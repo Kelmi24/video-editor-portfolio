@@ -14,6 +14,10 @@ export interface VideoProject {
   duration?: string;
   software_used?: string[];
   role?: string;
+  // Case study fields
+  challenge?: string;
+  approach?: string;
+  outcome?: string;
 }
 
 export interface Client {

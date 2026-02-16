@@ -22,6 +22,9 @@ import {
     Calendar,
     Quote,
     ExternalLink,
+    Target,
+    Lightbulb,
+    TrendingUp,
 } from "lucide-react";
 import { getVideoEmbedUrl, getVideoThumbnailUrl, isGoogleDriveLink, isInstagramLink } from "@/lib/helper";
 import type { VideoProject } from "@/types/videos";
@@ -109,6 +112,55 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
                         </div>
                     </GlassmorphismCard>
                 </motion.div>
+
+                {/* Case Study Section */}
+                {(project.challenge || project.approach || project.outcome) && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.05 }}
+                        className="mb-8"
+                    >
+                        <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-8">
+                            Project <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-yellow-500">Case Study</span>
+                        </h2>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            {project.challenge && (
+                                <GlassmorphismCard className="p-6 hover:border-red-500/30 transition-colors duration-300">
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <div className="p-2 rounded-lg bg-red-500/10 border border-red-500/20">
+                                            <Target size={20} className="text-red-400" />
+                                        </div>
+                                        <h3 className="text-lg font-semibold text-white">The Challenge</h3>
+                                    </div>
+                                    <p className="text-gray-300 text-sm leading-relaxed">{project.challenge}</p>
+                                </GlassmorphismCard>
+                            )}
+                            {project.approach && (
+                                <GlassmorphismCard className="p-6 hover:border-amber-500/30 transition-colors duration-300">
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <div className="p-2 rounded-lg bg-amber-500/10 border border-amber-500/20">
+                                            <Lightbulb size={20} className="text-amber-400" />
+                                        </div>
+                                        <h3 className="text-lg font-semibold text-white">The Approach</h3>
+                                    </div>
+                                    <p className="text-gray-300 text-sm leading-relaxed">{project.approach}</p>
+                                </GlassmorphismCard>
+                            )}
+                            {project.outcome && (
+                                <GlassmorphismCard className="p-6 hover:border-green-500/30 transition-colors duration-300">
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <div className="p-2 rounded-lg bg-green-500/10 border border-green-500/20">
+                                            <TrendingUp size={20} className="text-green-400" />
+                                        </div>
+                                        <h3 className="text-lg font-semibold text-white">The Outcome</h3>
+                                    </div>
+                                    <p className="text-gray-300 text-sm leading-relaxed">{project.outcome}</p>
+                                </GlassmorphismCard>
+                            )}
+                        </div>
+                    </motion.div>
+                )}
 
                 {/* Project Details Section */}
                 <motion.div

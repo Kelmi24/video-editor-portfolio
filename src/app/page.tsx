@@ -7,6 +7,7 @@ import Hero from "@/components/hero";
 import ClientCarousel from "@/components/client-carousel";
 import ProjectCard from "@/components/project-card";
 import CTASection from "@/components/CTASection";
+import Testimonials from "@/components/testimonials";
 import {
   getLandscapeProjects,
   getVerticalProjects,
@@ -255,6 +256,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Client Testimonials */}
+      <Testimonials />
 
       {/* Call to Action Section */}
       <CTASection

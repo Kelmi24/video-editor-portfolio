@@ -81,6 +81,26 @@ export default function ContactPage() {
           </p>
         </motion.div>
 
+        {/* Availability Status */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.1 }}
+          className="flex flex-wrap items-center justify-center gap-6 mb-12"
+        >
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping" />
+              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-500" />
+            </span>
+            <span className="text-green-400 text-sm font-medium">Available for Projects</span>
+          </div>
+          <div className="flex items-center gap-2 text-gray-400 text-sm">
+            <Clock size={14} />
+            <span>GMT+7 (WIB) · Responds within 24 hours</span>
+          </div>
+        </motion.div>
+
         <div className="grid lg:grid-cols-2 gap-12 justify-center items-center">
           {/* Contact Info */}
           <motion.div

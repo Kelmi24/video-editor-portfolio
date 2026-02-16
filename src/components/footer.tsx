@@ -3,7 +3,6 @@
 import Link from "next/link";
 import {
   Linkedin,
-  Twitter,
   Youtube,
   Mail,
   Heart,
@@ -13,27 +12,22 @@ import {
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
-  // TODO: Replace '#' with your actual social media URLs
+  // Social links - only show links with real URLs
   const socialLinks = [
     {
       name: "YouTube",
-      href: "#", // TODO: Add your YouTube channel URL
+      href: "https://youtube.com/@rickelme",
       icon: Youtube,
     },
     {
       name: "Instagram",
-      href: "#", // TODO: Add your Instagram profile URL
+      href: "https://instagram.com/gede.rickelme",
       icon: Instagram,
     },
     {
       name: "LinkedIn",
-      href: "#", // TODO: Add your LinkedIn profile URL
+      href: "https://linkedin.com/in/rickelme",
       icon: Linkedin,
-    },
-    {
-      name: "Twitter",
-      href: "#", // TODO: Add your Twitter/X profile URL
-      icon: Twitter,
     },
     {
       name: "Email",

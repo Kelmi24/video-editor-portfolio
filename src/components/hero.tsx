@@ -115,6 +115,25 @@ export default function Hero() {
               </a>
             </MagneticButton>
           </motion.div>
+
+          {/* Stats Bar */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.0 }}
+            className="flex items-center justify-center lg:justify-start gap-8 mt-10"
+          >
+            {[
+              { value: "4+", label: "Years" },
+              { value: "125K+", label: "Views" },
+              { value: "8+", label: "Clients" },
+            ].map((stat, i) => (
+              <div key={i} className="text-center">
+                <div className="text-2xl font-bold text-amber-400">{stat.value}</div>
+                <div className="text-xs text-gray-500 uppercase tracking-wider">{stat.label}</div>
+              </div>
+            ))}
+          </motion.div>
         </div>
 
         {/* Right Side - Video Showreel Preview */}

@@ -19,6 +19,9 @@ export const allVideoProjects: VideoProject[] = [
     duration: "0:30",
     software_used: ["Adobe Premiere Pro", "After Effects"],
     role: "Lead Editor & Motion Designer",
+    challenge: "Luxury Yachts Co needed scroll-stopping Instagram Reels that conveyed the premium feel of their yachts and drove inquiries from high-net-worth buyers — all within a 30-second vertical format.",
+    approach: "Combined cinematic drone footage with tight detail shots of interiors. Used beat-synced transitions, luxury color grading (rich blues and warm golds), and After Effects motion graphics to create an aspirational lifestyle narrative in vertical format.",
+    outcome: "The reel series significantly boosted the client's Instagram engagement and helped position their brand as a premium yacht dealer in the social media space.",
   },
   {
     id: "luxury-yachts-reel-2",
@@ -347,6 +350,9 @@ export const allVideoProjects: VideoProject[] = [
     duration: "0:45",
     software_used: ["Adobe Premiere Pro", "DaVinci Resolve"],
     role: "Editor & Colorist",
+    challenge: "FAM Estate needed high-end property reels that could compete with luxury real estate content on Instagram and attract potential buyers scrolling through their feed.",
+    approach: "Used cinematic wide-angle property shots combined with smooth gimbal movement transitions. Applied warm, inviting color grading in DaVinci Resolve and added subtle text overlays highlighting key property features.",
+    outcome: "The reels elevated FAM Estate's social media presence, resulting in increased profile visits and direct inquiries from prospective buyers.",
   },
   {
     id: "qisaruma-reels",
@@ -386,6 +392,9 @@ export const allVideoProjects: VideoProject[] = [
     duration: "1:00",
     software_used: ["Adobe Premiere Pro", "After Effects"],
     role: "Editor & Motion Designer",
+    challenge: "Chef Elin needed high-converting video ads for Facebook and Instagram that would showcase her culinary expertise and drive course sign-ups within a tight budget.",
+    approach: "Crafted appetite-driven hooks in the first 3 seconds, used close-up food shots with warm color grading, and added motion graphics for pricing and CTA overlays. Optimized separate aspect ratios for Facebook feed and Instagram Stories.",
+    outcome: "The ads drove measurable results for the brand, with the client reporting increased engagement and conversions from the campaign.",
   },
   {
     id: "decluttr-promo-yt",
@@ -404,6 +413,9 @@ export const allVideoProjects: VideoProject[] = [
     duration: "1:30",
     software_used: ["Adobe Premiere Pro", "After Effects"],
     role: "Lead Editor & Motion Designer",
+    challenge: "Decluttr needed a promotional video that clearly communicated their platform's value proposition while maintaining a professional, trustworthy brand image for YouTube and social media distribution.",
+    approach: "Developed a clean narrative structure with professional motion graphics, using a brand-aligned color palette. Combined screen recordings with lifestyle footage and added After Effects animations for feature highlights and transitions.",
+    outcome: "Delivered a polished promo video that the client used across YouTube and social media channels, helping establish their brand presence online.",
   },
   {
     id: "importir-org-clip",
@@ -422,6 +434,9 @@ export const allVideoProjects: VideoProject[] = [
     duration: "3:00",
     software_used: ["Adobe Premiere Pro", "DaVinci Resolve"],
     role: "Editor & Colorist",
+    challenge: "Importir.org needed a content series that could build community engagement on YouTube, showcase member success stories, and drive new sign-ups for their import/export education platform.",
+    approach: "Developed an engaging editing style with dynamic cuts, lower-thirds for key stats, and professional color grading in DaVinci Resolve. Focused on storytelling that highlighted real community members and their achievements.",
+    outcome: "The content series helped drive 125K+ views on Importir.org's YouTube channel, significantly growing their community and establishing the platform's credibility.",
   },
   {
     id: "nft-co-promo",
@@ -440,6 +455,9 @@ export const allVideoProjects: VideoProject[] = [
     duration: "1:00",
     software_used: ["After Effects", "Adobe Premiere Pro"],
     role: "Motion Designer",
+    challenge: "NFT.co needed a futuristic promo video that could explain their Web3 marketplace to a mainstream audience while maintaining the edgy, tech-forward aesthetic expected in the crypto/NFT space.",
+    approach: "Designed custom motion graphics in After Effects with a neon-accented, dark futuristic style. Created animated UI mockups showcasing the platform's features, synced to an energetic soundtrack with glitch transitions and particle effects.",
+    outcome: "The promo video became a key marketing asset for NFT.co's launch campaign, helping communicate the platform's value to both crypto-native and mainstream audiences.",
   },
   {
     id: "importir-event-trailer",
