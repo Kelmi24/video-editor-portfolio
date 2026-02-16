@@ -29,11 +29,16 @@ import {
 import { getVideoEmbedUrl, getVideoThumbnailUrl, isGoogleDriveLink, isInstagramLink } from "@/lib/helper";
 import type { VideoProject } from "@/types/videos";
 
+import { useRouter } from "next/navigation";
+import ProjectCard from "@/components/project-card";
+
 interface ProjectDetailsProps {
     project: VideoProject;
+    relatedProjects?: VideoProject[];
 }
 
-export default function ProjectDetails({ project }: ProjectDetailsProps) {
+export default function ProjectDetails({ project, relatedProjects = [] }: ProjectDetailsProps) {
+    const router = useRouter();
     const [showVideo, setShowVideo] = useState(false);
     const embedUrl = getVideoEmbedUrl(project.video_link);
 
@@ -340,6 +345,28 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
                                 </div>
                             </div>
                         </GlassmorphismCard>
+                    </motion.div>
+                )}
+                {/* Related Projects Section */}
+                {relatedProjects.length > 0 && (
+                     <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.5 }}
+                        className="mt-16 border-t border-white/10 pt-16"
+                    >
+                        <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 text-center">
+                            More from {project.client_name}
+                        </h2>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                            {relatedProjects.map((p) => (
+                                <ProjectCard
+                                    key={p.id}
+                                    project={p}
+                                    onPlay={() => router.push(`/project/${p.id}`)}
+                                />
+                            ))}
+                        </div>
                     </motion.div>
                 )}
             </div>

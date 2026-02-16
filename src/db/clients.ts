@@ -2,16 +2,6 @@ import { Client } from "@/types/videos";
 
 export const clientsData: Client[] = [
   {
-    id: "luxury-yachts-co",
-    name: "Luxury Yachts Co",
-    logo: "/companies/luxury-yachts-co.png",
-  },
-  {
-    id: "importir-org",
-    name: "Importir.org",
-    logo: "/companies/importir-org.png",
-  },
-  {
     id: "decluttr",
     name: "Decluttr",
     logo: "/companies/decluttr.png",
@@ -22,19 +12,19 @@ export const clientsData: Client[] = [
     logo: "/companies/ichiban.png",
   },
   {
-    id: "entrepreneurs-id",
-    name: "Entrepreneurs.id",
-    logo: "/companies/entrepreneurs-id.png",
+    id: "luxury-yachts-co",
+    name: "Luxury Yachts Co",
+    logo: "/companies/luxury-yachts-co.png",
   },
   {
     id: "nft-co",
-    name: "NFT.co",
+    name: "NFT.co / Docial",
     logo: "/companies/nft-docial.png",
   },
   {
-    id: "docial",
-    name: "Docial",
-    logo: "/companies/nft-docial.png",
+    id: "entrepreneurs-id",
+    name: "Entrepreneurs.id",
+    logo: "/companies/entrepreneurs-id.png",
   },
   {
     id: "qisaruma",
@@ -45,6 +35,11 @@ export const clientsData: Client[] = [
     id: "digital-brand-partner",
     name: "Digital Brand Partner",
     logo: "/companies/digital-brand-partner.png",
+  },
+  {
+    id: "importir-org",
+    name: "Importir.org",
+    logo: "/companies/importir-org.png",
   },
   {
     id: "fam-estate",

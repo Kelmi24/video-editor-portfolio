@@ -58,5 +58,10 @@ export default async function ProjectPage({
     notFound();
   }
 
-  return <ProjectDetails project={project} />;
+  // Get related projects from the same client
+  const relatedProjects = allVideoProjects.filter(
+    (p) => p.client_name === project.client_name && p.id !== project.id
+  );
+
+  return <ProjectDetails project={project} relatedProjects={relatedProjects} />;
 }

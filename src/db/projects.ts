@@ -66,7 +66,7 @@ export const allVideoProjects: VideoProject[] = [
     video_description:
       "High-impact Instagram Reel featuring yacht lifestyle content — sunset cruising, deck views, and premium brand positioning for social media.",
     tags: ["Instagram Reels", "Yacht", "Lifestyle", "Sunset"],
-    cover_image: "/projects/luxury-yachts-reel-4-clean.png",
+    cover_image: "/projects/luxury-yachts-reel-4.png",
     publish_date: "2025-06-20",
     client_name: "Luxury Yachts Co",
     client_image: "/companies/luxury-yachts-co.png",
@@ -84,7 +84,7 @@ export const allVideoProjects: VideoProject[] = [
     video_description:
       "Cinematic Instagram Reel capturing yacht detail shots — polished chrome, sleek hulls, and luxury finishes — with premium post-production.",
     tags: ["Instagram Reels", "Yacht", "Detail Shots", "Premium"],
-    cover_image: "/projects/luxury-yachts-reel-5-clean.png",
+    cover_image: "/projects/luxury-yachts-reel-5.png",
     publish_date: "2025-06-25",
     client_name: "Luxury Yachts Co",
     client_image: "/companies/luxury-yachts-co.png",
@@ -102,7 +102,7 @@ export const allVideoProjects: VideoProject[] = [
     video_description:
       "Engaging Instagram Reel with fast-paced yacht tour editing, dynamic transitions, and optimized for maximum Instagram engagement and reach.",
     tags: ["Instagram Reels", "Yacht Tour", "Dynamic Edits", "Social Media"],
-    cover_image: "/projects/luxury-yachts-reel-6-clean.png",
+    cover_image: "/projects/luxury-yachts-reel-1.png", // Original missing, using placeholder
     publish_date: "2025-07-05",
     client_name: "Luxury Yachts Co",
     client_image: "/companies/luxury-yachts-co.png",
@@ -120,7 +120,7 @@ export const allVideoProjects: VideoProject[] = [
     video_description:
       "Professional Instagram Reel for a luxury yacht listing, featuring aerial and interior shots with polished transitions and brand-consistent styling.",
     tags: ["Instagram Reels", "Yacht", "Listing Video", "Aerial"],
-    cover_image: "/projects/luxury-yachts-reel-7-clean.png",
+    cover_image: "/projects/luxury-yachts-reel-2.png", // Original missing, using placeholder
     publish_date: "2025-07-20",
     client_name: "Luxury Yachts Co",
     client_image: "/companies/luxury-yachts-co.png",
@@ -138,7 +138,7 @@ export const allVideoProjects: VideoProject[] = [
     video_description:
       "Vertical-format Instagram Reel showcasing yacht on-water experience with immersive POV shots, stabilized footage, and cinematic color grading.",
     tags: ["Instagram Reels", "Yacht", "POV", "Cinematic"],
-    cover_image: "/projects/luxury-yachts-reel-8-clean.png",
+    cover_image: "/projects/luxury-yachts-reel-3.png", // Original missing, using placeholder
     publish_date: "2025-08-01",
     client_name: "Luxury Yachts Co",
     client_image: "/companies/luxury-yachts-co.png",
@@ -156,7 +156,7 @@ export const allVideoProjects: VideoProject[] = [
     video_description:
       "Premium Instagram Reel for Luxury Yachts Co, combining lifestyle footage with smooth motion graphics and call-to-action overlays for lead generation.",
     tags: ["Instagram Reels", "Yacht", "Lead Gen", "CTA"],
-    cover_image: "/projects/luxury-yachts-reel-9-clean.png",
+    cover_image: "/projects/luxury-yachts-reel-1.png", // Original missing, using placeholder
     publish_date: "2025-08-15",
     client_name: "Luxury Yachts Co",
     client_image: "/companies/luxury-yachts-co.png",
@@ -447,7 +447,7 @@ export const allVideoProjects: VideoProject[] = [
     tags: ["Promo", "Web3", "NFT", "Motion Graphics"],
     cover_image: "nHfx3_TpTZE",
     publish_date: "2022-06-20",
-    client_name: "NFT.co",
+    client_name: "NFT.co / Docial",
     client_image: "/companies/nft-docial.png",
     client_feedback: "",
     video_link: "https://youtu.be/nHfx3_TpTZE",
@@ -486,7 +486,7 @@ export const allVideoProjects: VideoProject[] = [
     tags: ["Promo", "Tech Platform", "UI Animation", "Brand Video"],
     cover_image: "jlq1AUSh3pE",
     publish_date: "2023-02-14",
-    client_name: "Docial",
+    client_name: "NFT.co / Docial",
     client_image: "/companies/nft-docial.png",
     client_feedback: "",
     video_link: "https://youtu.be/jlq1AUSh3pE",
@@ -522,7 +522,7 @@ export const allVideoProjects: VideoProject[] = [
     tags: ["Campaign", "Giveaway", "Motion Graphics", "Social Media"],
     cover_image: "g3qrEA7QEes",
     publish_date: "2023-03-10",
-    client_name: "Docial",
+    client_name: "NFT.co / Docial",
     client_image: "/companies/nft-docial.png",
     client_feedback: "",
     video_link: "https://youtu.be/g3qrEA7QEes",
