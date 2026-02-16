@@ -45,14 +45,14 @@ export default function Hero() {
           </motion.div>
 
           {/* Main Title - Split for animation */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white mb-8 leading-[0.9]">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white mb-8 leading-[0.95]">
             <motion.span
               initial={{ opacity: 0, y: 50, rotate: 2 }}
               animate={{ opacity: 1, y: 0, rotate: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
               className="block bg-gradient-to-br from-white via-white to-gray-500 bg-clip-text text-transparent"
             >
-              CINEMATIC
+              I Don&apos;t Just Edit Video.
             </motion.span>
             <motion.span
               initial={{ opacity: 0, y: 50, rotate: -2 }}
@@ -60,7 +60,7 @@ export default function Hero() {
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
               className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-yellow-600 pb-4"
             >
-              EDITOR
+              I Engineer Emotion.
             </motion.span>
           </h1>
 
