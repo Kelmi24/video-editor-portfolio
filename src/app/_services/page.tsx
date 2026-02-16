@@ -42,7 +42,7 @@ export default function ServicesPage() {
         "Subtitle integration",
         "Interactive elements",
       ],
-      color: "text-blue-400",
+      color: "text-amber-400",
     },
     {
       icon: Sparkles,
@@ -56,7 +56,7 @@ export default function ServicesPage() {
         "Transition effects",
         "Brand-consistent design",
       ],
-      color: "text-purple-400",
+      color: "text-amber-400",
     },
     {
       icon: Palette,
@@ -228,11 +228,11 @@ export default function ServicesPage() {
                 transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
               >
                 <GlassmorphismCard
-                  className={`p-8 h-full relative ${pkg.popular ? "ring-2 ring-blue-500" : ""}`}
+                  className={`p-8 h-full relative ${pkg.popular ? "ring-2 ring-amber-500" : ""}`}
                 >
                   {pkg.popular && (
                     <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                      <span className="bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-medium">
+                      <span className="bg-amber-600 text-white px-4 py-1 rounded-full text-sm font-medium">
                         Most Popular
                       </span>
                     </div>
@@ -241,7 +241,7 @@ export default function ServicesPage() {
                     <h3 className="text-2xl font-bold mb-2 text-white">
                       {pkg.name}
                     </h3>
-                    <div className="text-3xl font-bold text-blue-400 mb-2">
+                    <div className="text-3xl font-bold text-amber-400 mb-2">
                       {pkg.price}
                     </div>
                     <p className="text-gray-400 text-sm">{pkg.description}</p>
@@ -261,7 +261,7 @@ export default function ServicesPage() {
                     ))}
                   </ul>
                   <Button
-                    className={`w-full ${pkg.popular ? "bg-blue-600 hover:bg-blue-700" : "bg-gray-700 hover:bg-gray-600"}`}
+                    className={`w-full ${pkg.popular ? "bg-amber-600 hover:bg-amber-700" : "bg-gray-700 hover:bg-gray-600"}`}
                     asChild
                   >
                     <a href="/contact">Get Started</a>
@@ -338,7 +338,7 @@ export default function ServicesPage() {
               I'm here to help bring your vision to life with professional video
               editing and motion graphics.
             </p>
-            <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700">
+            <Button asChild size="lg" className="bg-amber-600 hover:bg-amber-700">
               <a href="/contact">
                 Get a Quote <ArrowRight className="ml-2" size={20} />
               </a>

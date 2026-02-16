@@ -2,12 +2,26 @@ import { clientsData } from "@/db/clients";
 import { allVideoProjects } from "@/db/projects";
 import { Client, VideoProject } from "@/types/videos";
 
-// Helper function to get all projects sorted by date (latest first)
-export const getAllVideoProjects = (): VideoProject[] => {
-  return allVideoProjects.sort(
-    (a, b) =>
-      new Date(b.publish_date).getTime() - new Date(a.publish_date).getTime()
+// Helper to check if project is high priority (YouTube/Reels)
+const isPriorityProject = (project: VideoProject) => {
+  return project.category.some((c) =>
+    ["YouTube", "Reels", "Instagram Reels", "YouTube Shorts"].includes(c)
   );
+};
+
+// Helper function to get all projects sorted by priority then date (latest first)
+export const getAllVideoProjects = (): VideoProject[] => {
+  return allVideoProjects.sort((a, b) => {
+    const aPriority = isPriorityProject(a);
+    const bPriority = isPriorityProject(b);
+
+    if (aPriority && !bPriority) return -1;
+    if (!aPriority && bPriority) return 1;
+
+    return (
+      new Date(b.publish_date).getTime() - new Date(a.publish_date).getTime()
+    );
+  });
 };
 
 // Helper function to get projects by category sorted by date (latest first)
@@ -22,10 +36,35 @@ export const getVideoProjectsByCategory = (
     project.category.includes(category)
   );
 
-  return filteredProjects.sort(
-    (a, b) =>
+  return filteredProjects.sort((a, b) => {
+    const aPriority = isPriorityProject(a);
+    const bPriority = isPriorityProject(b);
+
+    if (aPriority && !bPriority) return -1;
+    if (!aPriority && bPriority) return 1;
+
+    return (
       new Date(b.publish_date).getTime() - new Date(a.publish_date).getTime()
+    );
+  });
+
+};
+
+// Helper to check if project is vertical (Reels/Shorts)
+export const isVerticalProject = (project: VideoProject) => {
+  return project.category.some((c) =>
+    ["Reels", "Instagram Reels", "Shorts", "YouTube Shorts"].includes(c)
   );
+};
+
+// Get only Vertical Projects (Reels, Shorts)
+export const getVerticalProjects = (): VideoProject[] => {
+  return getAllVideoProjects().filter(isVerticalProject);
+};
+
+// Get only Landscape Projects (YouTube, standard video)
+export const getLandscapeProjects = (): VideoProject[] => {
+  return getAllVideoProjects().filter((p) => !isVerticalProject(p));
 };
 
 // Helper function to get project by ID
@@ -82,11 +121,49 @@ export function getClients(): Client[] {
   return clientsData;
 }
 
-// Helper function to get the proper embed link
-export const getYouTubeEmbedUrl = (url: string): string | null => {
+// Helper function to check if a URL is a Google Drive link
+export const isGoogleDriveLink = (url: string): boolean => {
+  if (!url) return false;
+  return url.includes("drive.google.com");
+};
+
+// Helper function to check if a URL is an Instagram link
+export const isInstagramLink = (url: string): boolean => {
+  if (!url) return false;
+  return url.includes("instagram.com/reel/");
+};
+
+// Helper function to extract Instagram Reel ID
+export const getInstagramReelId = (url: string): string | null => {
+  if (!url) return null;
+  const match = url.match(/instagram\.com\/reel\/([a-zA-Z0-9_-]+)/);
+  return match ? match[1] : null;
+};
+
+// Helper function to extract Google Drive file ID
+export const getGoogleDriveFileId = (url: string): string | null => {
+  if (!url) return null;
+  const match = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+  return match ? match[1] : null;
+};
+
+// Helper function to get the proper embed link (supports YouTube, Google Drive, and Instagram)
+export const getVideoEmbedUrl = (url: string): string | null => {
   if (!url) return null;
 
-  // Handle Shorts
+  // Handle Instagram Reels
+  if (isInstagramLink(url)) {
+    const reelId = getInstagramReelId(url);
+    return reelId ? `https://www.instagram.com/reel/${reelId}/embed/` : null;
+  }
+
+  // Handle Google Drive
+  if (isGoogleDriveLink(url)) {
+    const fileId = getGoogleDriveFileId(url);
+    return fileId ? `https://drive.google.com/file/d/${fileId}/preview` : null;
+  }
+
+  // Handle YouTube Shorts
   if (url.includes("youtube.com/shorts/")) {
     const match = url.match(/youtube\.com\/shorts\/([a-zA-Z0-9_-]{11})/);
     return match ? `https://www.youtube.com/embed/${match[1]}` : null;
@@ -97,6 +174,52 @@ export const getYouTubeEmbedUrl = (url: string): string | null => {
     /(?:youtube\.com\/(?:watch\?v=|embed\/|v\/|.+\?v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
   );
   return match ? `https://www.youtube.com/embed/${match[1]}` : null;
+};
+
+// Keep legacy function name for backward compat
+export const getYouTubeEmbedUrl = getVideoEmbedUrl;
+
+// Helper function to get thumbnail URL
+export const getVideoThumbnailUrl = (
+  coverImage: string,
+  videoLink: string
+): string => {
+  // 1. If cover_image is a valid URL or local path (and NOT a placeholder), use it
+  if (
+    coverImage &&
+    (coverImage.startsWith("/") || coverImage.startsWith("http")) &&
+    coverImage !== "/placeholder.svg"
+  ) {
+    return coverImage;
+  }
+
+  // 2. If cover_image looks like a YouTube ID, use it
+  if (coverImage && coverImage.length > 0 && !coverImage.includes("/")) {
+    return `https://img.youtube.com/vi/${coverImage}/maxresdefault.jpg`;
+  }
+
+  // 3. Automatic extraction from video_link if cover_image is missing or placeholder
+  if (videoLink) {
+    // YouTube
+    const ytMatch = videoLink.match(
+      /(?:youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/|.+\?v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+    );
+    if (ytMatch) {
+      return `https://img.youtube.com/vi/${ytMatch[1]}/maxresdefault.jpg`;
+    }
+
+    // Instagram (Try legacy media endpoint)
+    // Note: This relies on client-side fetching or luck with Instagram's CDN redirect
+    if (videoLink.includes("instagram.com")) {
+      const reelMatch = videoLink.match(/instagram\.com\/(?:reel|p)\/([a-zA-Z0-9_-]+)/);
+      if (reelMatch) {
+        return `https://www.instagram.com/p/${reelMatch[1]}/media/?size=l`;
+      }
+    }
+  }
+
+  // Fallback
+  return "/placeholder.svg";
 };
 
 // Legacy support - keep the old structure for backward compatibility if needed

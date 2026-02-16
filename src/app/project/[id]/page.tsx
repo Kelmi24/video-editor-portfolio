@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { allVideoProjects } from "@/db/projects";
 import ProjectDetails from "@/components/project-details";
+import { getVideoThumbnailUrl } from "@/lib/helper";
 
 // Generate unique static params for all projects
 export async function generateStaticParams() {
@@ -25,6 +26,8 @@ export async function generateMetadata({
     };
   }
 
+  const thumbnailUrl = getVideoThumbnailUrl(project.cover_image, project.video_link);
+
   return {
     title: project.video_title,
     description: project.video_description,
@@ -33,7 +36,7 @@ export async function generateMetadata({
       description: project.video_description,
       images: [
         {
-          url: `https://img.youtube.com/vi/${project.cover_image}/maxresdefault.jpg`,
+          url: thumbnailUrl,
           width: 1280,
           height: 720,
           alt: project.video_title,

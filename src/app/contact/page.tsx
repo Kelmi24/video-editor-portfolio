@@ -1,14 +1,17 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import GlassmorphismCard from "@/components/glassmorphism-card";
-import { Mail, MapPin, Clock, Send, MessageCircle } from "lucide-react";
+import { Mail, MapPin, Clock, Send, MessageCircle, Loader2 } from "lucide-react";
 import { toast } from "sonner"
 
 export default function ContactPage() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -33,21 +36,29 @@ export default function ContactPage() {
       return;
     }
 
-    const res = await fetch("/api/send-email", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name, email, message, projectType, timeline }),
-    });
+    setIsSubmitting(true);
 
-    const result = await res.json();
+    try {
+      const res = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, message, projectType, timeline }),
+      });
 
-    if (res.ok) {
-      toast("Message sent successfully!");
-      form.reset();
-    } else {
-      toast(result.error || "Something went wrong.");
+      const result = await res.json();
+
+      if (res.ok) {
+        toast("Message sent successfully!");
+        form.reset();
+      } else {
+        toast(result.error || "Something went wrong.");
+      }
+    } catch {
+      toast("Network error. Please try again.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -84,16 +95,16 @@ export default function ContactPage() {
               </h3>
               <div className="space-y-6">
                 <div className="flex items-center space-x-4">
-                  <div className="bg-blue-600 p-3 rounded-lg">
+                  <div className="bg-amber-600 p-3 rounded-lg">
                     <Mail className="text-white" size={20} />
                   </div>
                   <div>
                     <p className="text-gray-400 text-sm">Email</p>
                     <a
-                      href="mailto:contact.niloybhowmick@gmail.com"
-                      className="text-white hover:text-blue-400 transition-colors"
+                      href="mailto:grickelme24@gmail.com"
+                      className="text-white hover:text-amber-400 transition-colors"
                     >
-                      contact.niloybhowmick@gmail.com
+                      grickelme24@gmail.com
                     </a>
                   </div>
                 </div>
@@ -105,12 +116,12 @@ export default function ContactPage() {
                   <div>
                     <p className="text-gray-400 text-sm">WhatsApp</p>
                     <a
-                      href="https://wa.me/+8801580385556"
+                      href="https://wa.me/6281295729960"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-white hover:text-green-400 transition-colors"
                     >
-                      +88 (015) 803-85556
+                      +62 812-9572-9960
                     </a>
                   </div>
                 </div>
@@ -121,7 +132,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="text-gray-400 text-sm">Location</p>
-                    <p className="text-white">Available Worldwide (Remote)</p>
+                    <p className="text-white">Tangerang, Indonesia</p>
                   </div>
                 </div>
 
@@ -143,7 +154,7 @@ export default function ContactPage() {
               </h3>
               <div className="space-y-4">
                 <div className="flex items-start space-x-3">
-                  <div className="bg-blue-600 w-2 h-2 rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="bg-amber-600 w-2 h-2 rounded-full mt-2 flex-shrink-0"></div>
                   <div>
                     <h4 className="font-medium text-white">Quick Turnaround</h4>
                     <p className="text-gray-400 text-sm">
@@ -233,7 +244,7 @@ export default function ContactPage() {
                   <select
                     id="project-type"
                     name="project-type"
-                    className="w-full bg-gray-800/50 border border-gray-600 text-white rounded-md px-3 py-2"
+                    className="w-full bg-gray-800/50 border border-gray-600 text-white rounded-xl px-3 py-2 appearance-none cursor-pointer focus:border-amber-500/50 focus:outline-none focus:ring-2 focus:ring-amber-500/10 transition-all [&>option]:bg-gray-900 [&>option]:text-white"
                   >
                     <option value="">Select project type</option>
                     <option value="youtube">YouTube Video</option>
@@ -281,10 +292,14 @@ export default function ContactPage() {
 
                 <Button
                   type="submit"
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white cursor-pointer"
+                  disabled={isSubmitting}
+                  className="w-full bg-amber-600 hover:bg-amber-700 text-white cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed transition-all"
                 >
-                  <Send className="mr-2" size={16} />
-                  Send Message
+                  {isSubmitting ? (
+                    <><Loader2 className="mr-2 animate-spin" size={16} /> Sending...</>
+                  ) : (
+                    <><Send className="mr-2" size={16} /> Send Message</>
+                  )}
                 </Button>
               </form>
 
@@ -292,7 +307,7 @@ export default function ContactPage() {
                 <p className="text-gray-400 text-sm text-center">
                   Prefer to chat directly? Reach out on{" "}
                   <a
-                    href="https://wa.me/+8801580385556"
+                    href="https://wa.me/6281295729960"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-green-400 hover:text-green-300"
@@ -307,7 +322,7 @@ export default function ContactPage() {
         </div>
 
         {/* FAQ Section */}
-        {/* <motion.div
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.6 }}
@@ -343,14 +358,14 @@ export default function ContactPage() {
                   </h4>
                   <p className="text-gray-400 text-sm">
                     Yes! I include multiple revisions in all packages to ensure
-                    you're completely satisfied with the final result.
+                    you&apos;re completely satisfied with the final result.
                   </p>
                 </div>
               </div>
               <div className="space-y-6">
                 <div>
                   <h4 className="font-medium text-white mb-2">
-                    What's your payment process?
+                    What&apos;s your payment process?
                   </h4>
                   <p className="text-gray-400 text-sm">
                     I typically require 50% upfront and 50% upon completion.
@@ -373,13 +388,13 @@ export default function ContactPage() {
                   </h4>
                   <p className="text-gray-400 text-sm">
                     Yes! I work with many clients on retainer for regular
-                    content creation. Let's discuss your ongoing needs.
+                    content creation. Let&apos;s discuss your ongoing needs.
                   </p>
                 </div>
               </div>
             </div>
           </GlassmorphismCard>
-        </motion.div> */}
+        </motion.div>
       </div>
     </div>
   );

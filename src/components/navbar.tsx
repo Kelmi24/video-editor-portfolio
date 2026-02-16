@@ -9,6 +9,7 @@ import { Clapperboard } from "./ui/Clapperboard";
 
 const navItems = [
   { name: "Home", href: "/" },
+  { name: "Projects", href: "/#projects" },
   { name: "About", href: "/about" },
   { name: "Skills", href: "/skills" },
   { name: "Contact", href: "/contact" },
@@ -47,11 +48,11 @@ export default function Navbar() {
         `}>
         <div className="w-full flex items-center justify-between">
           <Link href="/" className="flex items-center space-x-3 group">
-            <div className={`p-2 rounded-lg transition-all duration-300 ${scrolled ? "bg-white/5 group-hover:bg-blue-600" : "bg-white/10 group-hover:bg-blue-600"}`}>
+            <div className={`p-2 rounded-lg transition-all duration-300 ${scrolled ? "bg-white/5 group-hover:bg-amber-600" : "bg-white/10 group-hover:bg-amber-600"}`}>
               <Clapperboard />
             </div>
-            <span className="text-xl font-bold tracking-tight text-white group-hover:text-blue-200 transition-colors">
-              itsNiloy
+            <span className="text-xl font-bold tracking-tight text-white group-hover:text-amber-300 transition-colors">
+              Rickelme
             </span>
           </Link>
 
@@ -120,7 +121,7 @@ export default function Navbar() {
                       href={item.href}
                       onClick={() => setIsOpen(false)}
                       className={`block px-4 py-3 rounded-xl text-base font-medium transition-all ${pathname === item.href
-                        ? "text-white bg-blue-600/20 border border-blue-500/30"
+                        ? "text-white bg-amber-600/20 border border-amber-500/30"
                         : "text-gray-400 hover:text-white hover:bg-white/5"
                         }`}
                     >

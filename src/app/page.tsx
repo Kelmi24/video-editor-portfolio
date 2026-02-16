@@ -1,181 +1,179 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import GlassmorphismCard from "@/components/glassmorphism-card";
-import MouseMoveEffect from "@/components/mouse-move-effect";
 import Hero from "@/components/hero";
+import ClientCarousel from "@/components/client-carousel";
 import ProjectCard from "@/components/project-card";
-import { ArrowRight, Loader2 } from "lucide-react";
+import CTASection from "@/components/CTASection";
 import {
-  getVideoProjectsByCategory,
-  getVideoCategoriesWithCountIncludingAll,
+  getLandscapeProjects,
+  getVerticalProjects,
 } from "@/lib/helper";
 import type { VideoProject } from "@/types/videos";
 
-const categories = getVideoCategoriesWithCountIncludingAll();
+import VideoModal from "@/components/video-modal";
+
+// Extract unique categories from projects
+function getUniqueCategories(projects: VideoProject[]): string[] {
+  const cats = new Set<string>();
+  projects.forEach((p) => p.category.forEach((c) => cats.add(c)));
+  return Array.from(cats);
+}
 
 export default function HomePage() {
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  const [displayedProjects, setDisplayedProjects] = useState<VideoProject[]>([]);
-  const [allProjects, setAllProjects] = useState<VideoProject[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [loading, setLoading] = useState(false);
-  const [hasMore, setHasMore] = useState(true);
+  const [selectedProject, setSelectedProject] = useState<VideoProject | null>(null);
+  const [landscapeFilter, setLandscapeFilter] = useState("All");
+  const [verticalFilter, setVerticalFilter] = useState("All");
 
-  const ITEMS_PER_PAGE = 9;
+  const allLandscape = getLandscapeProjects();
+  const allVertical = getVerticalProjects();
 
-  // Load projects for selected category
-  useEffect(() => {
-    const projects = getVideoProjectsByCategory(selectedCategory);
-    setAllProjects(projects);
-    setDisplayedProjects(projects.slice(0, ITEMS_PER_PAGE));
-    setCurrentPage(1);
-    setHasMore(projects.length > ITEMS_PER_PAGE);
-  }, [selectedCategory]);
+  const landscapeCategories = useMemo(() => getUniqueCategories(allLandscape), [allLandscape]);
+  const verticalCategories = useMemo(() => getUniqueCategories(allVertical), [allVertical]);
 
-  // Load more projects
-  const loadMoreProjects = useCallback(() => {
-    if (loading || !hasMore) return;
-
-    setLoading(true);
-    // Removed artificial delay for better performance
-    const nextPage = currentPage + 1;
-    const startIndex = (nextPage - 1) * ITEMS_PER_PAGE;
-    const endIndex = startIndex + ITEMS_PER_PAGE;
-    const newProjects = allProjects.slice(startIndex, endIndex);
-
-    setDisplayedProjects((prev) => [...prev, ...newProjects]);
-    setCurrentPage(nextPage);
-    setHasMore(endIndex < allProjects.length);
-    setLoading(false);
-  }, [currentPage, allProjects, loading, hasMore]);
-
-  // Infinite scroll for non-"All" categories
-  useEffect(() => {
-    if (selectedCategory === "All") return;
-
-    const handleScroll = () => {
-      if (
-        window.innerHeight + document.documentElement.scrollTop >=
-        document.documentElement.offsetHeight - 1000
-      ) {
-        loadMoreProjects();
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [selectedCategory, loadMoreProjects]);
+  const landscapeProjects = useMemo(
+    () => landscapeFilter === "All" ? allLandscape : allLandscape.filter((p) => p.category.includes(landscapeFilter)),
+    [landscapeFilter, allLandscape]
+  );
+  const verticalProjects = useMemo(
+    () => verticalFilter === "All" ? allVertical : allVertical.filter((p) => p.category.includes(verticalFilter)),
+    [verticalFilter, allVertical]
+  );
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      <MouseMoveEffect />
-
       <Hero />
 
-      {/* Projects Section */}
+      {/* Client Carousel */}
+      <ClientCarousel />
+
+      {/* Featured Projects Section (Landscape) */}
       <section id="projects" className="py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-center mb-16 relative"
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-12 relative"
           >
             {/* Spotlight Effect behind title */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-blue-500/20 blur-[100px] rounded-full pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-amber-500/20 blur-[100px] rounded-full pointer-events-none" />
 
-            <h2 className="text-5xl md:text-7xl font-bold mb-8 text-white tracking-tight relative z-10">
-              <span className="bg-gradient-to-r from-white via-blue-100 to-gray-400 bg-clip-text text-transparent">
-                My Video Projects
+            <h2 className="text-5xl md:text-7xl font-bold mb-4 text-white tracking-tight relative z-10">
+              <span className="bg-gradient-to-r from-white via-amber-100 to-gray-400 bg-clip-text text-transparent">
+                Featured Video Projects
               </span>
             </h2>
-            <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed">
-              From smooth transitions to precise audio syncing and dynamic
-              animations — I focus on making your content not just polished, but
-              <span className="text-blue-400 font-medium"> powerful</span>.
+            <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed mb-2">
+              Cinematic storytelling, precise editing, and compelling narratives.
+            </p>
+            <p className="text-sm text-amber-400/60 font-medium">
+              {landscapeProjects.length} project{landscapeProjects.length !== 1 ? "s" : ""}
             </p>
           </motion.div>
 
-          {/* Category Filter */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex flex-wrap justify-center gap-3 mb-16"
-          >
-            {categories.map(({ category, count }) => (
+          {/* Category Filter Tabs */}
+          <div className="flex flex-wrap justify-center gap-2 mb-10">
+            {["All", ...landscapeCategories].map((cat) => (
               <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`
-                  relative px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300
-                  ${selectedCategory === category
-                    ? "bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.3)] scale-105"
-                    : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white border border-white/5"
-                  }
-                `}
+                key={cat}
+                onClick={() => setLandscapeFilter(cat)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 border cursor-pointer ${
+                  landscapeFilter === cat
+                    ? "bg-amber-500/20 text-amber-300 border-amber-500/40 shadow-[0_0_12px_rgba(212,168,67,0.15)]"
+                    : "bg-white/5 text-gray-400 border-white/10 hover:bg-white/10 hover:text-white hover:border-white/20"
+                }`}
               >
-                {category}
-                <span className={`
-                  ml-2 text-[10px] px-1.5 py-0.5 rounded-full transition-colors
-                  ${selectedCategory === category ? "bg-black text-white" : "bg-white/10 text-gray-400"}
-                `}>
-                  {count}
-                </span>
+                {cat}
               </button>
             ))}
-          </motion.div>
+          </div>
 
-          {/* Projects Grid */}
-          <motion.div
-            layout
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10"
-          >
-            {displayedProjects.map((project, index) => (
+          {/* Landscape Projects Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+            {landscapeProjects.map((project, index) => (
               <motion.div
                 key={project.id}
-                layout
                 initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut", delay: index * 0.1 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <ProjectCard project={project} />
+                <ProjectCard project={project} onPlay={setSelectedProject} />
               </motion.div>
             ))}
+          </div>
+
+          {landscapeProjects.length === 0 && (
+            <div className="text-center py-16">
+              <p className="text-gray-500 text-lg">No projects found for this category.</p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Vertical Projects Section (Reels/Shorts) */}
+      <section id="shorts" className="py-20 px-4 sm:px-6 relative">
+         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl md:text-6xl font-bold mb-4 text-white tracking-tight">
+              Short-Form <span className="text-amber-400">Content</span>
+            </h2>
+            <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed mb-2">
+              High-impact vertical videos designed for social media engagement.
+            </p>
+            <p className="text-sm text-amber-400/60 font-medium">
+              {verticalProjects.length} video{verticalProjects.length !== 1 ? "s" : ""}
+            </p>
           </motion.div>
 
-          {/* Load More Button for "All" category */}
-          {selectedCategory === "All" && hasMore && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-center mt-20"
-            >
-              <Button
-                onClick={loadMoreProjects}
-                disabled={loading}
-                size="lg"
-                className="bg-white text-black hover:bg-gray-200 rounded-full px-8 h-12 font-medium transition-all hover:scale-105"
+          {/* Category Filter Tabs */}
+          <div className="flex flex-wrap justify-center gap-2 mb-10">
+            {["All", ...verticalCategories].map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setVerticalFilter(cat)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 border cursor-pointer ${
+                  verticalFilter === cat
+                    ? "bg-amber-500/20 text-amber-300 border-amber-500/40 shadow-[0_0_12px_rgba(212,168,67,0.15)]"
+                    : "bg-white/5 text-gray-400 border-white/10 hover:bg-white/10 hover:text-white hover:border-white/20"
+                }`}
               >
-                {loading ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Loading...
-                  </>
-                ) : (
-                  <>
-                    Load More Projects
-                    <ArrowRight className="ml-2" size={16} />
-                  </>
-                )}
-              </Button>
-            </motion.div>
+                {cat}
+              </button>
+            ))}
+          </div>
+
+          {/* Vertical Projects Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+            {verticalProjects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="mx-auto w-full max-w-[320px]" 
+              >
+                <ProjectCard project={project} onPlay={setSelectedProject} />
+              </motion.div>
+            ))}
+          </div>
+
+          {verticalProjects.length === 0 && (
+            <div className="text-center py-16">
+              <p className="text-gray-500 text-lg">No videos found for this category.</p>
+            </div>
           )}
         </div>
       </section>
@@ -192,7 +190,7 @@ export default function HomePage() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-              What I Can Do <span className="text-blue-500">for You</span>
+              What I Can Do <span className="text-amber-400">for You</span>
             </h2>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
               If you're looking for someone who blends creativity with technical
@@ -241,11 +239,11 @@ export default function HomePage() {
                 transition={{ duration: 0.8, ease: "easeOut", delay: index * 0.1 }}
                 className="h-full"
               >
-                <GlassmorphismCard className="p-8 h-full flex flex-col items-center text-center group hover:bg-white/[0.04] hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] transition-all duration-300">
+                <GlassmorphismCard className="p-8 h-full flex flex-col items-center text-center group hover:bg-white/[0.04] hover:shadow-[0_0_30px_rgba(212,168,67,0.15)] transition-all duration-300">
                   <div className="text-5xl mb-6 bg-white/5 p-4 rounded-2xl group-hover:scale-110 transition-transform duration-300 border border-white/5">
                     {service.icon}
                   </div>
-                  <h3 className="text-xl font-bold mb-3 text-white group-hover:text-blue-400 transition-colors">
+                  <h3 className="text-xl font-bold mb-3 text-white group-hover:text-amber-400 transition-colors">
                     {service.title}
                   </h3>
                   <p className="text-gray-400 text-sm leading-relaxed">
@@ -257,6 +255,20 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Call to Action Section */}
+      <CTASection
+        title="Ready to create magic?"
+        description="Let's bring your vision to life with professional video editing, motion graphics, and cinematic storytelling."
+        buttonText="Get in Touch"
+        href="/contact"
+      />
+
+      {/* Video Modal */}
+      <VideoModal
+        project={selectedProject}
+        onClose={() => setSelectedProject(null)}
+      />
     </div>
   );
 }

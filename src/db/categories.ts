@@ -1,9 +1,9 @@
 export const categories = [
   "All",
-  "Talking Head",
-  "Shorts",
+  "Social Media Ads",
+  "Reels",
   "Promo",
+  "YouTube",
   "Documentary",
-  "Motion Graphics",
-  "Explainer",
+  "Live Event",
 ];

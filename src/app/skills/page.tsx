@@ -27,12 +27,12 @@ import {
 } from "@/db/skills";
 
 const iconMap = [
-  { icon: <FileSearch size={20} />, bg: "#0ea5e9" }, // Project Analysis
-  { icon: <Eye size={20} />, bg: "#a855f7" }, // Content Review
+  { icon: <FileSearch size={20} />, bg: "#D4A843" }, // Project Analysis
+  { icon: <Eye size={20} />, bg: "#B8922E" }, // Content Review
   { icon: <ScissorsSquare size={20} />, bg: "#f97316" }, // Rough Cut
   { icon: <Brush size={20} />, bg: "#10b981" }, // Fine Tuning
   { icon: <BarChart3 size={20} />, bg: "#f43f5e" }, // Client Review
-  { icon: <Send size={20} />, bg: "#6366f1" }, // Final Delivery
+  { icon: <Send size={20} />, bg: "#9A7A25" }, // Final Delivery
 ];
 
 export default function SkillsPage() {
@@ -195,7 +195,7 @@ export default function SkillsPage() {
               >
                 <GlassmorphismCard className="p-6">
                   <div className="flex flex-col md:flex-row items-start md:items-center space-y-4 md:space-y-0 md:space-x-6">
-                    <div className="flex-shrink-0 w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
+                    <div className="flex-shrink-0 w-12 h-12 bg-amber-600 rounded-full flex items-center justify-center">
                       <span className="text-white font-bold">{step.step}</span>
                     </div>
                     <div className="flex-grow">
@@ -222,21 +222,21 @@ export default function SkillsPage() {
           </h2>
 
           <GlassmorphismCard className="p-4 md:p-8">
-            <VerticalTimeline animate={true} lineColor="#3b82f6">
+            <VerticalTimeline animate={true} lineColor="#D4A843">
               {workflow.map((step, index) => (
                 <VerticalTimelineElement
                   key={step.step}
                   className="vertical-timeline-element--work"
                   date={`Step ${step.step}`}
                   contentStyle={{
-                    background: "rgb(30, 41, 59)",
+                    background: "rgb(30, 28, 23)",
                     color: "#fff",
                   }}
                   contentArrowStyle={{
-                    borderRight: "7px solid rgb(30, 41, 59)",
+                    borderRight: "7px solid rgb(30, 28, 23)",
                   }}
                   iconStyle={{
-                    background: iconMap[index]?.bg || "#3b82f6",
+                    background: iconMap[index]?.bg || "#D4A843",
                     color: "#fff",
                   }}
                   icon={iconMap[index]?.icon || <Star size={20} />}

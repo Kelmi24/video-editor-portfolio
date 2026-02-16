@@ -23,7 +23,7 @@ import {
     Quote,
     ExternalLink,
 } from "lucide-react";
-import { getYouTubeEmbedUrl } from "@/lib/helper";
+import { getVideoEmbedUrl, getVideoThumbnailUrl, isGoogleDriveLink, isInstagramLink } from "@/lib/helper";
 import type { VideoProject } from "@/types/videos";
 
 interface ProjectDetailsProps {
@@ -32,7 +32,14 @@ interface ProjectDetailsProps {
 
 export default function ProjectDetails({ project }: ProjectDetailsProps) {
     const [showVideo, setShowVideo] = useState(false);
-    const embedUrl = getYouTubeEmbedUrl(project.video_link);
+    const embedUrl = getVideoEmbedUrl(project.video_link);
+
+    const isVertical =
+        project.category.some((c) =>
+            ["Reels", "Instagram Reels", "YouTube Shorts"].includes(c)
+        ) ||
+        isInstagramLink(project.video_link) ||
+        project.video_link.includes("shorts/");
 
     return (
         <div className="min-h-screen pt-32 pb-20 px-4">
@@ -64,10 +71,16 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
                     className="mb-8"
                 >
                     <GlassmorphismCard className="p-4 md:p-6">
-                        <div className="aspect-video relative rounded-lg overflow-hidden bg-gray-900">
+                        <div
+                            className={`relative rounded-lg overflow-hidden bg-gray-900 mx-auto ${
+                                isVertical
+                                    ? "w-full max-w-sm aspect-[9/16]"
+                                    : "w-full aspect-video"
+                            }`}
+                        >
                             {showVideo && embedUrl ? (
                                 <iframe
-                                    src={`${embedUrl}?autoplay=1&modestbranding=1&rel=0`}
+                                    src={(isGoogleDriveLink(project.video_link) || isInstagramLink(project.video_link)) ? embedUrl! : `${embedUrl}?autoplay=1&modestbranding=1&rel=0`}
                                     title={project.video_title}
                                     className="w-full h-full"
                                     allowFullScreen
@@ -76,11 +89,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
                             ) : (
                                 <div className="relative w-full h-full">
                                     <Image
-                                        src={
-                                            project.cover_image
-                                                ? `https://img.youtube.com/vi/${project.cover_image}/maxresdefault.jpg`
-                                                : "/placeholder.svg"
-                                        }
+                                        src={getVideoThumbnailUrl(project.cover_image, project.video_link)}
                                         alt={project.video_title}
                                         fill
                                         className="object-cover"
@@ -132,7 +141,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
                                     Project Details
                                 </h3>
                                 <div className="space-y-2 text-sm">
-                                    <div className="flex items-center text-gray-400">
+                                    <div className="flex items-center text-gray-300">
                                         <Calendar className="mr-2" size={14} />
                                         <span>
                                             Published:{" "}
@@ -146,7 +155,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
                                             )}
                                         </span>
                                     </div>
-                                    <div className="flex items-center text-gray-400">
+                                    <div className="flex items-center text-gray-300">
                                         <User className="mr-2" size={14} />
                                         <span>Client: {project.client_name}</span>
                                     </div>
@@ -198,7 +207,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
                                     rel="noopener noreferrer"
                                 >
                                     <ExternalLink className="mr-2" size={16} />
-                                    Watch on YouTube
+                                    {isGoogleDriveLink(project.video_link) ? "Watch Video" : isInstagramLink(project.video_link) ? "View on Instagram" : "Watch on YouTube"}
                                 </a>
                             </Button>
                         </div>
@@ -270,7 +279,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
                                 </div>
                                 <div className="relative">
                                     <Quote
-                                        className="absolute -top-4 -left-4 text-blue-400 opacity-50"
+                                        className="absolute -top-4 -left-4 text-amber-400 opacity-50"
                                         size={32}
                                     />
                                     <blockquote className="text-gray-300 italic text-lg text-center leading-relaxed pl-8">

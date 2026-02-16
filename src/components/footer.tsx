@@ -13,30 +13,31 @@ import {
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
+  // TODO: Replace '#' with your actual social media URLs
   const socialLinks = [
     {
       name: "YouTube",
-      href: "https://www.youtube.com/@itsniloybhowmick",
+      href: "#", // TODO: Add your YouTube channel URL
       icon: Youtube,
     },
     {
       name: "Instagram",
-      href: "https://instagram.com/its.niloybhowmick",
+      href: "#", // TODO: Add your Instagram profile URL
       icon: Instagram,
     },
     {
       name: "LinkedIn",
-      href: "https://www.linkedin.com/in/niloy-bhowmick",
+      href: "#", // TODO: Add your LinkedIn profile URL
       icon: Linkedin,
     },
     {
       name: "Twitter",
-      href: "#",
+      href: "#", // TODO: Add your Twitter/X profile URL
       icon: Twitter,
     },
     {
       name: "Email",
-      href: "mailto:contact.niloybhowmick@gmail.com",
+      href: "mailto:grickelme24@gmail.com",
       icon: Mail,
     },
   ];
@@ -47,13 +48,13 @@ export default function Footer() {
         <div className="grid md:grid-cols-3 gap-12">
           {/* Brand */}
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold tracking-tight bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
-              Niloy Bhowmick
+            <h3 className="text-2xl font-bold tracking-tight bg-gradient-to-r from-amber-400 to-yellow-600 bg-clip-text text-transparent">
+              Gede Rickelme
             </h3>
             <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
               Video Editor and Motion Graphics Designer passionate about
-              creating visual stories with style, precision, and cinematic
-              magic.
+              crafting compelling visual content for social media, YouTube,
+              and digital marketing.
             </p>
           </div>
 
@@ -65,25 +66,31 @@ export default function Footer() {
             <div className="grid grid-cols-2 gap-4 text-sm font-medium">
               <Link
                 href="/"
-                className="text-gray-400 hover:text-blue-400 transition-colors"
+                className="text-gray-400 hover:text-amber-400 transition-colors"
               >
                 Home
               </Link>
               <Link
+                href="/#projects"
+                className="text-gray-400 hover:text-amber-400 transition-colors"
+              >
+                Projects
+              </Link>
+              <Link
                 href="/about"
-                className="text-gray-400 hover:text-blue-400 transition-colors"
+                className="text-gray-400 hover:text-amber-400 transition-colors"
               >
                 About
               </Link>
               <Link
                 href="/skills"
-                className="text-gray-400 hover:text-blue-400 transition-colors"
+                className="text-gray-400 hover:text-amber-400 transition-colors"
               >
                 Skills
               </Link>
               <Link
                 href="/contact"
-                className="text-gray-400 hover:text-blue-400 transition-colors"
+                className="text-gray-400 hover:text-amber-400 transition-colors"
               >
                 Contact
               </Link>
@@ -107,8 +114,8 @@ export default function Footer() {
                     className="group"
                     aria-label={link.name}
                   >
-                    <div className="p-3 rounded-full bg-white/5 border border-white/10 group-hover:bg-blue-600/20 group-hover:border-blue-500/50 transition-all duration-300">
-                      <Icon size={20} className="text-gray-400 group-hover:text-blue-400 transition-colors" />
+                    <div className="p-3 rounded-full bg-white/5 border border-white/10 group-hover:bg-amber-600/20 group-hover:border-amber-500/50 transition-all duration-300">
+                      <Icon size={20} className="text-gray-400 group-hover:text-amber-400 transition-colors" />
                     </div>
                   </a>
                 );
@@ -120,14 +127,11 @@ export default function Footer() {
         <div className="border-t border-white/5 mt-16 pt-8 text-center">
           <p className="text-gray-500 text-sm flex items-center justify-center gap-1.5">
             Made with <Heart className="text-red-500 fill-red-500/20" size={14} /> by{" "}
-            <a
-              href="https://www.linkedin.com/in/mdmarufsarker/"
-              target="_blank"
-              rel="noopener noreferrer"
+            <span
               className="text-gray-400 hover:text-white transition-colors underline decoration-dotted underline-offset-4"
             >
-              Md. Maruf Sarker
-            </a>{" "}
+              Gede Rickelme
+            </span>{" "}
             © {currentYear}
           </p>
         </div>

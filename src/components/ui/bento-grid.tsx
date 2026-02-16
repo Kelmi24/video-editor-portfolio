@@ -42,7 +42,7 @@ export const BentoGridItem = ({
             transition={{ duration: 0.4 }}
             viewport={{ once: true }}
             className={cn(
-                "row-span-1 rounded-3xl group/bento hover:shadow-2xl transition duration-300 shadow-input dark:shadow-none p-4 dark:bg-black dark:border-white/[0.2] bg-white border border-transparent justify-between flex flex-col space-y-4 shadow-blue-500/10",
+                "row-span-1 rounded-3xl group/bento hover:shadow-2xl transition duration-300 shadow-input dark:shadow-none p-4 dark:bg-black dark:border-white/[0.2] bg-white border border-transparent justify-between flex flex-col space-y-4 shadow-amber-500/10",
                 "glass-panel border-white/5", // Kept previous glass style
                 className
             )}

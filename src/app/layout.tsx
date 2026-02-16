@@ -1,6 +1,6 @@
 import type React from "react";
 import type { Metadata } from "next";
-import { Inter, Nunito } from "next/font/google";
+import { Inter } from "next/font/google";
 
 import "./globals.css";
 import Navbar from "@/components/navbar";
@@ -11,37 +11,37 @@ import SmoothScroll from "@/components/smooth-scroll";
 import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({ subsets: ["latin"] });
-// const nunito = Nunito({ subsets: ["latin"] });q
 
 export const metadata: Metadata = {
   title: {
-    default: "Niloy Bhowmick – Video Editor & Motion Graphics Designer",
-    template: "%s | Niloy Bhowmick",
+    default: "Gede Rickelme – Video Editor & Motion Graphics Designer",
+    template: "%s | Gede Rickelme",
   },
   description:
-    "Turning raw footage into visual stories — with style, precision, and a touch of cinematic magic. Niloy Bhowmick specializes in DaVinci Resolve, Premiere Pro, and After Effects — delivering cinematic edits, motion graphics, and polished storytelling.",
+    "Experienced video editor with 4+ years of expertise crafting compelling visual content for Instagram, YouTube, Facebook, and TikTok. Proficient in Adobe Premiere Pro, DaVinci Resolve, After Effects, and Audition — delivering cinematic edits, social media ads, and dynamic motion graphics.",
   keywords: [
-    "Niloy Bhowmick",
+    "Gede Rickelme",
     "Video Editor",
     "Motion Graphics Designer",
+    "Videographer",
+    "Adobe Premiere Pro",
     "DaVinci Resolve",
-    "Premiere Pro",
     "After Effects",
-    "Color Grading",
+    "Adobe Audition",
+    "Social Media Video Editor",
     "YouTube Video Editing",
-    "Course Video Editing",
-    "Logo Animation",
-    "Visual Storytelling",
+    "Instagram Reels Editor",
+    "Facebook Ads Video",
+    "TikTok Video Editor",
     "Freelance Video Editor",
-    "Bangladesh Video Editor",
+    "Indonesia Video Editor",
+    "Tangerang Video Editor",
     "Cinematic Editing",
     "Content Creator",
-    "Lower Thirds",
-    "Audio Sync",
   ],
-  authors: [{ name: "Niloy Bhowmick", url: "https://www.itsniloy.me" }],
-  creator: "Niloy Bhowmick",
-  publisher: "Niloy Bhowmick",
+  authors: [{ name: "Gede Rickelme" }],
+  creator: "Gede Rickelme",
+  publisher: "Gede Rickelme",
   robots: {
     index: true,
     follow: true,
@@ -56,34 +56,29 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://www.itsniloy.me",
-    title: "Niloy Bhowmick – Video Editor & Motion Graphics Designer",
+    title: "Gede Rickelme – Video Editor & Motion Graphics Designer",
     description:
-      "Passionate Video Editor and Motion Graphics Designer delivering clean, cinematic edits and dynamic visual storytelling using DaVinci Resolve, Premiere Pro, and After Effects.",
-    siteName: "Niloy Bhowmick Portfolio",
+      "Experienced Video Editor and Videographer delivering polished social media ads, YouTube content, and motion graphics using Premiere Pro, DaVinci Resolve, and After Effects.",
+    siteName: "Gede Rickelme Portfolio",
     images: [
       {
-        url: "/niloybhowmick.png",
+        url: "/profile.png",
         width: 1200,
         height: 630,
-        alt: "Niloy Bhowmick - Video Editor",
+        alt: "Gede Rickelme - Video Editor",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Niloy Bhowmick – Video Editor & Motion Graphics Designer",
+    title: "Gede Rickelme – Video Editor & Motion Graphics Designer",
     description:
-      "Crafting cinematic edits, motion graphics, and powerful stories. Let's make your content stand out.",
-    creator: "@niloy_bhowmick", // update if you have a real Twitter handle
-    images: ["/niloybhowmick.png"],
+      "Crafting cinematic edits, social media ads, and powerful visual stories. Let's make your content stand out.",
+    images: ["/profile.png"],
   },
-  verification: {
-    google: "your-google-verification-code",
-  },
-  alternates: {
-    canonical: "https://www.itsniloy.me",
-  },
+  // verification: {
+  //   google: "YOUR_GOOGLE_VERIFICATION_CODE",
+  // },
   category: "Video Editing",
 };
 
@@ -104,24 +99,21 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              name: "Niloy Bhowmick",
-              url: "https://www.itsniloy.me",
-              image: "/niloybhowmick.png",
-              sameAs: [
-                "https://www.itsniloy.me",
-                "https://linkedin.com/in/niloybhowmick", // update if available
-                "https://youtube.com/@niloybhowmick", // update if available
-                "https://twitter.com/niloy_bhowmick", // update if available
-              ],
+              name: "Gede Rickelme",
+              image: "/profile.png",
+              sameAs: [],
               jobTitle: "Video Editor & Motion Graphics Designer",
               knowsAbout: [
                 "Video Editing",
+                "Videography",
                 "Motion Graphics",
-                "DaVinci Resolve",
                 "Adobe Premiere Pro",
+                "DaVinci Resolve",
                 "Adobe After Effects",
-                "Color Grading",
-                "Audio Syncing",
+                "Adobe Audition",
+                "Social Media Ads",
+                "Facebook Ads",
+                "Instagram Reels",
               ],
               worksFor: {
                 "@type": "Organization",
@@ -129,7 +121,7 @@ export default function RootLayout({
               },
               alumniOf: {
                 "@type": "Organization",
-                name: "Green University of Bangladesh",
+                name: "SMK Strada Daan Mogot",
               },
             }),
           }}

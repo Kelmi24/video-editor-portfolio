@@ -8,9 +8,20 @@ import {
   Users,
   Volume2,
   Zap,
+  Layout,
+  Smartphone,
+  Brush,
 } from "lucide-react";
 
 export const videoEditingSkills = [
+  {
+    name: "Adobe Premiere Pro",
+    image_link: "/tools/Adobe_Premiere_Pro_CC.png",
+    icon: Scissors,
+    description:
+      "Advanced video editing, multicam sync, and workflow optimization",
+    color: "text-amber-400",
+  },
   {
     name: "DaVinci Resolve",
     image_link: "/tools/DaVinci_Resolve_Studio.png",
@@ -20,19 +31,18 @@ export const videoEditingSkills = [
     color: "text-orange-400",
   },
   {
-    name: "Adobe Premiere Pro",
-    image_link: "/tools/Adobe_Premiere_Pro_CC.png",
-    icon: Scissors,
-    description:
-      "Advanced video editing, multicam sync, and workflow optimization",
-    color: "text-purple-400",
-  },
-  {
     name: "After Effects",
     image_link: "/tools/Adobe_After_Effects_CC.png",
     icon: Sparkles,
-    description: "Motion graphics, visual effects, and advanced animations",
-    color: "text-blue-400",
+    description: "Motion graphics, visual effects, and dynamic animations",
+    color: "text-amber-400",
+  },
+  {
+    name: "Adobe Audition",
+    image_link: "/tools/Adobe_Audition_CC.png",
+    icon: Volume2,
+    description: "Audio editing, noise reduction, and sound enhancement",
+    color: "text-green-400",
   },
   {
     name: "Adobe Photoshop",
@@ -42,62 +52,76 @@ export const videoEditingSkills = [
     color: "text-cyan-400",
   },
   {
-    name: "Adobe Audition",
-    image_link: "/tools/Adobe_Audition_CC.png",
-    icon: Volume2,
-    description: "Audio editing, noise reduction, and sound enhancement",
-    color: "text-green-400",
+    name: "Figma",
+    image_link: "/tools/Figma.svg",
+    icon: Layout,
+    description: "UI/UX design, wireframing, and collaborative prototyping",
+    color: "text-purple-400",
+  },
+  {
+    name: "CapCut",
+    image_link: "",
+    icon: Smartphone,
+    description: "Trend-focused mobile editing and quick social media cuts",
+    color: "text-white",
+  },
+  {
+    name: "Canva",
+    image_link: "",
+    icon: Brush,
+    description: "Quick graphic design, social media posts, and visual assets",
+    color: "text-cyan-400",
   },
 ];
 
 export const specializations = [
   {
-    title: "YouTube Content Creation",
+    title: "Social Media Ads",
     skills: [
-      "Retention Editing",
-      "Thumbnail Design",
-      "SEO Optimization",
-      "Analytics Understanding",
-    ],
-    icon: "🎬",
-    description:
-      "Specialized in creating engaging YouTube content that keeps viewers watching",
-  },
-  {
-    title: "Social Media Videos",
-    skills: [
-      "Short-form Content",
-      "Vertical Video",
+      "Facebook Ads",
+      "Instagram Ads",
+      "TikTok Content",
       "Platform Optimization",
-      "Viral Techniques",
     ],
     icon: "📱",
     description:
-      "Expert in creating content optimized for Instagram, TikTok, and other platforms",
+      "Creating high-converting video ads for Facebook and Instagram with proven CTR results",
   },
   {
-    title: "Corporate Videos",
+    title: "YouTube Content",
     skills: [
-      "Professional Presentation",
-      "Brand Consistency",
-      "Clean Aesthetics",
-      "Message Clarity",
+      "Long-form Editing",
+      "Retention Editing",
+      "Thumbnail Design",
+      "SEO Optimization",
     ],
-    icon: "🏢",
+    icon: "🎬",
     description:
-      "Creating polished corporate content that communicates effectively",
+      "Specialized in YouTube content that drives views — 3 videos with 125k+ views each",
   },
   {
-    title: "Educational Content",
+    title: "Instagram Reels",
     skills: [
-      "Screen Recording",
-      "Tutorial Structure",
-      "Clear Explanations",
-      "Interactive Elements",
+      "Short-form Content",
+      "Vertical Video",
+      "FYP Strategy",
+      "Viral Techniques",
     ],
-    icon: "📚",
+    icon: "✨",
     description:
-      "Specialized in making complex topics easy to understand through video",
+      "Expert in creating reels that consistently hit the For You Page — 2-3 FYP appearances weekly",
+  },
+  {
+    title: "Videography",
+    skills: [
+      "Product Shots",
+      "Beauty Shots",
+      "Live Events",
+      "Content Capture",
+    ],
+    icon: "📷",
+    description:
+      "Capturing professional footage for ads, reels, and brand content",
   },
   {
     title: "Motion Graphics",
@@ -107,49 +131,49 @@ export const specializations = [
       "Lower Thirds",
       "Kinetic Typography",
     ],
-    icon: "✨",
-    description: "Creating eye-catching animations that enhance storytelling",
+    icon: "🎨",
+    description: "Creating eye-catching animations that enhance brand storytelling",
   },
   {
-    title: "Color Grading",
+    title: "Live Production",
     skills: [
-      "Cinematic Looks",
-      "Color Matching",
-      "Mood Creation",
-      "Technical Correction",
+      "Live Streaming",
+      "Cooking Shows",
+      "Webinar Sessions",
+      "Multi-camera",
     ],
-    icon: "🎨",
+    icon: "🔴",
     description:
-      "Professional color work that gives videos a polished, cinematic feel",
+      "Operating live cooking and webinar sessions with professional quality",
   },
 ];
 
 export const achievements = [
   {
-    title: "50+ Projects Completed",
+    title: "4+ Years Experience",
     description:
-      "Successfully delivered over 100 video projects across various industries",
+      "Professional video editing and videography experience across multiple industries",
+    icon: Camera,
+    color: "text-amber-400",
+  },
+  {
+    title: "125K+ Views",
+    description:
+      "Three YouTube videos garnering over 125k views each with content captured and edited",
     icon: Award,
     color: "text-yellow-400",
   },
   {
-    title: "Happy Clients",
+    title: "8+ Clients Served",
     description:
-      "Built strong client relationships with positive feedback and lasting partnerships",
+      "Built strong relationships with clients including chefs, educators, and businesses",
     icon: Users,
     color: "text-green-400",
   },
   {
-    title: "3+ Years Experience",
+    title: "1-2.5% CTR",
     description:
-      "Professional video editing experience with continuous skill development",
-    icon: Camera,
-    color: "text-blue-400",
-  },
-  {
-    title: "Fast Turnaround",
-    description:
-      "Known for delivering high-quality work within tight deadlines",
+      "Consistently achieving above-average click-through rates on Facebook & Instagram ads",
     icon: Zap,
     color: "text-purple-400",
   },
@@ -164,9 +188,9 @@ export const workflow = [
   },
   {
     step: "02",
-    title: "Content Review",
+    title: "Content Capture",
     description:
-      "Analyzing raw footage, identifying key moments, and planning the edit",
+      "Filming product shots, beauty shots, live events, or receiving raw footage",
   },
   {
     step: "03",

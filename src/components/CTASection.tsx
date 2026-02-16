@@ -29,8 +29,8 @@ const CTASection = ({
         <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] to-transparent pointer-events-none z-0" />
 
         {/* Animated Ambience */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-blue-900/20 blur-[120px] rounded-full animate-pulse z-0" />
-        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-purple-900/20 blur-[100px] rounded-full z-0 opacity-50" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-amber-900/20 blur-[120px] rounded-full animate-pulse z-0" />
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-yellow-900/20 blur-[100px] rounded-full z-0 opacity-50" />
 
         {/* Noise Texture Overlay */}
         <div className="absolute inset-0 z-[1] opacity-20 pointer-events-none" style={{ backgroundImage: 'url("/noise.png")' }} />
@@ -51,8 +51,8 @@ const CTASection = ({
         <div className="relative z-10 p-10 md:p-16 flex flex-col items-center text-center">
 
           {/* Glowing Badge */}
-          <div className="inline-block px-4 py-1.5 rounded-full border border-blue-500/20 bg-blue-500/10 backdrop-blur-md mb-8 shadow-[0_0_20px_rgba(59,130,246,0.1)]">
-            <span className="text-xs md:text-sm font-semibold text-blue-300 tracking-widest uppercase">
+          <div className="inline-block px-4 py-1.5 rounded-full border border-amber-500/20 bg-amber-500/10 backdrop-blur-md mb-8 shadow-[0_0_20px_rgba(212,168,67,0.1)]">
+            <span className="text-xs md:text-sm font-semibold text-amber-300 tracking-widest uppercase">
               Open for New Projects
             </span>
           </div>
@@ -74,7 +74,7 @@ const CTASection = ({
                 {buttonText}
                 <ArrowRight className="ml-3 transition-transform group-hover:translate-x-1" size={20} />
               </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-100 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-r from-amber-100 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </a>
           </MagneticButton>
         </div>

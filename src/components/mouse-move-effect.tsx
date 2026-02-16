@@ -69,8 +69,8 @@ export default function MouseMoveEffect() {
       const p1 = currentPos1.current;
       const p2 = currentPos2.current;
 
-      layer1Ref.current.style.background = `radial-gradient(800px circle at ${p1.x}px ${p1.y}px, rgba(29, 78, 216, 0.12), transparent 60%)`;
-      layer2Ref.current.style.background = `radial-gradient(600px circle at ${p2.x}px ${p2.y}px, rgba(147, 51, 234, 0.08), transparent 60%)`;
+      layer1Ref.current.style.background = `radial-gradient(800px circle at ${p1.x}px ${p1.y}px, rgba(212, 168, 67, 0.08), transparent 60%)`;
+      layer2Ref.current.style.background = `radial-gradient(600px circle at ${p2.x}px ${p2.y}px, rgba(184, 146, 46, 0.06), transparent 60%)`;
 
       requestRef.current = requestAnimationFrame(animate);
     };
@@ -90,8 +90,8 @@ export default function MouseMoveEffect() {
   if (isMobile) {
     return (
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[-20%] left-[-20%] w-[80%] h-[80%] rounded-full bg-blue-900/10 blur-[80px] animate-pulse-slow" />
-        <div className="absolute bottom-[-20%] right-[-20%] w-[80%] h-[80%] rounded-full bg-purple-900/10 blur-[80px] animate-pulse-slow delay-1000" />
+        <div className="absolute top-[-20%] left-[-20%] w-[80%] h-[80%] rounded-full bg-amber-900/10 blur-[80px] animate-pulse-slow" />
+        <div className="absolute bottom-[-20%] right-[-20%] w-[80%] h-[80%] rounded-full bg-yellow-900/10 blur-[80px] animate-pulse-slow delay-1000" />
       </div>
     );
   }
@@ -102,7 +102,7 @@ export default function MouseMoveEffect() {
       <div
         className="fixed inset-0 z-0 pointer-events-none opacity-20"
         style={{
-          background: 'radial-gradient(circle at 50% 50%, rgba(30, 58, 138, 0.1) 0%, transparent 70%)'
+          background: 'radial-gradient(circle at 50% 50%, rgba(212, 168, 67, 0.06) 0%, transparent 70%)'
         }}
       />
 

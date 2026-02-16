@@ -9,21 +9,21 @@ export default function NotFound() {
     <main className="min-h-screen flex flex-col items-center justify-center px-4 text-center">
       <div className="max-w-md w-full">
         <Image
-          src="/not-found.jpg" // 🖼️ Replace with your image path
+          src="/not-found.jpg"
           alt="404 Not Found"
           width={500}
           height={300}
           className="w-full h-auto rounded-2xl object-contain mb-6"
           priority
         />
-        <h1 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-4">
+        <h1 className="text-2xl md:text-3xl font-semibold text-white mb-4">
           Oops! Page not found.
         </h1>
-        <p className="text-gray-600 mb-6">
-          The page you're looking for doesn't exist or has been moved.
+        <p className="text-gray-400 mb-6">
+          The page you&apos;re looking for doesn&apos;t exist or has been moved.
         </p>
         <Link href="/">
-          <Button variant="outline" size="sm" className="cursor-pointer">
+          <Button variant="outline" size="sm" className="cursor-pointer border-amber-500/30 text-amber-400 hover:bg-amber-500/10 hover:text-amber-300">
             <StepBack /> Go Back Home
           </Button>
         </Link>

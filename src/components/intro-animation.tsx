@@ -40,7 +40,7 @@ export default function IntroAnimation() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="mb-4"
             >
-              <div className="inline-block rounded-full bg-gradient-to-r from-purple-500 to-pink-600 p-1">
+              <div className="inline-block rounded-full bg-gradient-to-r from-amber-500 to-yellow-600 p-1">
                 <div className="flex h-24 w-24 items-center justify-center rounded-full bg-black">
                   <svg
                     className="h-12 w-12 text-white"
@@ -64,8 +64,8 @@ export default function IntroAnimation() {
               transition={{ duration: 0.5, delay: 0.5 }}
               className="text-4xl font-bold"
             >
-              <span className="bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
-                itsNiloy
+              <span className="bg-gradient-to-r from-amber-400 to-yellow-600 bg-clip-text text-transparent">
+                Rickelme
               </span>
             </motion.h1>
             <motion.p

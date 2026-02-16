@@ -9,124 +9,77 @@ import GlassmorphismCard from "@/components/glassmorphism-card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { VideoProject } from "@/types/videos";
+import { getVideoEmbedUrl, getVideoThumbnailUrl, isGoogleDriveLink, isInstagramLink } from "@/lib/helper";
 
 interface ProjectCardProps {
     project: VideoProject;
+    onPlay: (project: VideoProject) => void;
 }
 
-export default function ProjectCard({ project }: ProjectCardProps) {
-    const [isPlaying, setIsPlaying] = useState(false);
-    const cardRef = useRef<HTMLDivElement>(null);
-
-    // Handle click outside to stop playing
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (cardRef.current && !cardRef.current.contains(event.target as Node)) {
-                setIsPlaying(false);
-            }
-        };
-
-        if (isPlaying) {
-            document.addEventListener("mousedown", handleClickOutside);
-        }
-
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, [isPlaying]);
+export default function ProjectCard({ project, onPlay }: ProjectCardProps) {
+    const [imageError, setImageError] = useState(false);
 
     const handlePlayClick = (e: React.MouseEvent) => {
-        e.stopPropagation();
         e.preventDefault();
-        setIsPlaying(true);
+        onPlay(project);
     };
 
-    const handleStopClick = (e?: React.MouseEvent) => {
-        e?.stopPropagation();
-        e?.preventDefault();
-        setIsPlaying(false);
-    };
+    const isReel = project.category.includes("Reels") || project.category.includes("Instagram Reels") || isInstagramLink(project.video_link);
 
     return (
-        <div ref={cardRef} className="h-full">
-            <GlassmorphismCard className="h-full group hover:shadow-2xl hover:shadow-blue-900/10 transition-shadow duration-500 flex flex-col">
+        <div className="h-full">
+            <GlassmorphismCard className="h-full group hover:shadow-2xl hover:shadow-amber-900/10 transition-shadow duration-500 flex flex-col">
                 <div className="flex flex-col h-full p-5">
                     {/* Media Area */}
-                    <div className="relative overflow-hidden rounded-2xl aspect-video mb-5 shadow-lg bg-black isolate">
-                        <AnimatePresence mode="wait">
-                            {isPlaying ? (
+                    <div className={`relative overflow-hidden rounded-2xl mb-5 shadow-lg bg-black isolate ${isReel ? "aspect-[9/16]" : "aspect-video"}`}>
+                            <div
+                                className="relative w-full h-full cursor-pointer group/thumb"
+                                onClick={handlePlayClick}
+                            >
                                 <motion.div
-                                    key="video-player"
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
-                                    exit={{ opacity: 0 }}
-                                    className="absolute inset-0 z-20"
+                                    className="w-full h-full bg-gray-900 flex items-center justify-center"
                                 >
-                                    <iframe
-                                        src={`https://www.youtube.com/embed/${project.cover_image}?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1`}
-                                        title={project.video_title}
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowFullScreen
-                                        className="w-full h-full border-0"
-                                    />
-                                    <button
-                                        onClick={handleStopClick}
-                                        className="absolute top-2 right-2 bg-black/60 hover:bg-black/80 text-white p-1.5 rounded-full backdrop-blur-md transition-colors z-30"
-                                        aria-label="Close preview"
-                                    >
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="16"
-                                            height="16"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            strokeWidth="2"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        >
-                                            <path d="M18 6 6 18" />
-                                            <path d="m6 6 18 18" />
-                                        </svg>
-                                    </button>
-                                </motion.div>
-                            ) : (
-                                <div
-                                    key="thumbnail"
-                                    className="relative w-full h-full cursor-pointer group/thumb"
-                                    onClick={handlePlayClick}
-                                >
-                                    <motion.div
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        exit={{ opacity: 0 }}
-                                        className="w-full h-full"
-                                    >
+                                    {!imageError ? (
                                         <Image
-                                            src={`https://img.youtube.com/vi/${project.cover_image}/maxresdefault.jpg`}
+                                            src={getVideoThumbnailUrl(project.cover_image, project.video_link)}
                                             alt={project.video_title}
                                             fill
                                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                            unoptimized={getVideoThumbnailUrl(project.cover_image, project.video_link).includes("instagram.com")}
+                                            onError={() => setImageError(true)}
                                         />
-                                    </motion.div>
-
-                                    {/* Play Button Overlay */}
-                                    <div className="absolute inset-0 bg-black/20 group-hover/thumb:bg-black/40 transition-colors duration-300 flex items-center justify-center backdrop-blur-[0px] group-hover/thumb:backdrop-blur-[2px]">
-                                        <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 text-white transform scale-90 group-hover/thumb:scale-110 transition-all duration-300 shadow-xl shadow-black/20">
-                                            <Play className="ml-1 fill-white" size={28} />
-                                        </div>
-                                    </div>
-
-                                    {/* Duration Badge */}
-                                    {project.duration && (
-                                        <div className="absolute bottom-3 right-3 bg-black/80 backdrop-blur-sm border border-white/10 text-white text-[10px] font-bold px-2 py-1 rounded-md">
-                                            {project.duration}
+                                    ) : (
+                                        <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 group-hover:from-zinc-800 group-hover:via-zinc-700 group-hover:to-zinc-800 transition-all duration-500">
+                                            <div className="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center mb-3 border border-white/10">
+                                                <Play className="ml-0.5 text-amber-400/60" size={24} />
+                                            </div>
+                                            <span className="text-white/15 font-semibold text-xs uppercase tracking-[0.3em]">
+                                                {project.category.includes("Reels") 
+                                                  || project.category.includes("Instagram Reels")
+                                                  || isInstagramLink(project.video_link) 
+                                                  ? "Reel" : "Video"}
+                                            </span>
                                         </div>
                                     )}
+                                </motion.div>
+
+                                {/* Play Button Overlay */}
+                                <div className="absolute inset-0 bg-black/20 group-hover/thumb:bg-black/40 transition-colors duration-300 flex items-center justify-center backdrop-blur-[0px] group-hover/thumb:backdrop-blur-[2px]">
+                                    <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 text-white transform scale-90 group-hover/thumb:scale-110 transition-all duration-300 shadow-xl shadow-black/20">
+                                        <Play className="ml-1 fill-white" size={28} />
+                                    </div>
                                 </div>
-                            )}
-                        </AnimatePresence>
+
+                                {/* Duration Badge */}
+                                {project.duration && (
+                                    <div className="absolute bottom-3 right-3 bg-black/80 backdrop-blur-sm border border-white/10 text-white text-[10px] font-bold px-2 py-1 rounded-md">
+                                        {project.duration}
+                                    </div>
+                                )}
+                            </div>
                     </div>
 
                     {/* Content Area */}
@@ -141,10 +94,14 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                         </div>
 
                         <Link href={`/project/${project.id}`} className="block group/title">
-                            <h3 className="text-xl font-bold mb-3 text-white group-hover/title:text-blue-400 transition-colors line-clamp-2 leading-tight">
+                            <h3 className="text-xl font-bold mb-1 text-white group-hover/title:text-amber-400 transition-colors line-clamp-2 leading-tight">
                                 {project.video_title}
                             </h3>
                         </Link>
+
+                        {project.role && (
+                            <p className="text-sm text-amber-400/80 font-medium mb-3">{project.role}</p>
+                        )}
 
                         <p className="text-gray-400 text-sm mb-6 line-clamp-2 leading-relaxed">
                             {project.video_description}
