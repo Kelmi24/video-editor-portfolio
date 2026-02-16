@@ -1,4 +1,5 @@
 import { VideoProject } from "@/types/videos";
+import { clientsData } from "@/db/clients";
 
 export const allVideoProjects: VideoProject[] = [
   // --- Luxury Yachts Co — Instagram Reels ---
@@ -532,3 +533,14 @@ export const allVideoProjects: VideoProject[] = [
     role: "Motion Designer",
   },
 ];
+
+export const getGroupedProjects = () => {
+  return clientsData
+    .map((client) => {
+      const projects = allVideoProjects.filter(
+        (p) => p.client_name === client.name
+      );
+      return { client, projects };
+    })
+    .filter((group) => group.projects.length > 0);
+};
