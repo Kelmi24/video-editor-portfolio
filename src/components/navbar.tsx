@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
-import { Clapperboard } from "./ui/Clapperboard";
 
 const navItems = [
   { name: "Home", href: "/" },
@@ -48,8 +48,8 @@ export default function Navbar() {
         `}>
         <div className="w-full flex items-center justify-between">
           <Link href="/" className="flex items-center space-x-3 group">
-            <div className={`p-2 rounded-lg transition-all duration-300 ${scrolled ? "bg-white/5 group-hover:bg-amber-600" : "bg-white/10 group-hover:bg-amber-600"}`}>
-              <Clapperboard />
+            <div className={`relative w-9 h-9 rounded-full overflow-hidden border-2 transition-all duration-300 ${scrolled ? "border-amber-500/30 group-hover:border-amber-400" : "border-white/20 group-hover:border-amber-400"}`}>
+              <Image src="/profile.png" alt="Rickelme" fill className="object-cover" />
             </div>
             <span className="text-xl font-bold tracking-tight text-white group-hover:text-amber-300 transition-colors">
               Rickelme
