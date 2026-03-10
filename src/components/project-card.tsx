@@ -29,14 +29,14 @@ export default function ProjectCard({ project, onPlay }: ProjectCardProps) {
                 <div className="flex flex-col h-full">
                     {/* Media Area */}
                     <div className={`relative overflow-hidden rounded-xl mb-3 shadow-lg bg-black isolate ${isReel ? "aspect-[9/16]" : "aspect-video"}`}>
-                            <div className="relative w-full h-full cursor-pointer group/thumb" onClick={handlePlayClick}>
+                            <div className="absolute inset-0 w-full h-full cursor-pointer group/thumb flex items-center justify-center bg-black" onClick={handlePlayClick}>
                                 <iframe
                                     src={getVideoEmbedUrl(project.video_link) || undefined}
                                     title={project.video_title}
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowFullScreen
                                     loading="lazy"
-                                    className="w-full h-full border-0 pointer-events-none"
+                                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[105%] h-[105%] border-0 pointer-events-none"
                                 />
                                 {/* Golden border glow effect mimicking Hero */}
                                 <div className="absolute inset-0 rounded-xl pointer-events-none border border-amber-500/10" />
