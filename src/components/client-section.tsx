@@ -87,41 +87,14 @@ export default function ClientSection({
           )}
         </div>
 
-        {/* Landscape Projects Row */}
-        {landscapeProjects.length > 0 && (
-          <div className="relative group mb-8 last:mb-0">
-             {portraitProjects.length > 0 && (
-                <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4 px-1">
-                  Featured Videos
-                </h3>
-             )}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {landscapeProjects.map((project) => (
-                <div key={project.id}>
-                  <ProjectCard project={project} onPlay={onPlay} />
-                </div>
-              ))}
+        {/* Unified Projects Masonry Grid */}
+        <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 sm:gap-6">
+          {projects.map((project) => (
+            <div key={project.id} className="break-inside-avoid mb-4 sm:mb-6">
+              <ProjectCard project={project} onPlay={onPlay} />
             </div>
-          </div>
-        )}
-
-        {/* Portrait Projects Row */}
-        {portraitProjects.length > 0 && (
-          <div className="relative group">
-             {landscapeProjects.length > 0 && (
-                <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4 px-1">
-                  Short-Form Content
-                </h3>
-             )}
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4">
-              {portraitProjects.map((project) => (
-                <div key={project.id}>
-                  <ProjectCard project={project} onPlay={onPlay} />
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+          ))}
+        </div>
       </div>
     </motion.section>
   );
