@@ -95,18 +95,13 @@ export default function ClientSection({
                   Featured Videos
                 </h3>
              )}
-            <div className="flex overflow-x-auto pb-6 -mx-4 px-4 sm:mx-0 sm:px-0 gap-6 scrollbar-hide snap-x snap-mandatory">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {landscapeProjects.map((project) => (
-                <div
-                  key={project.id}
-                  className="snap-center flex-shrink-0 w-[85vw] sm:w-[450px]"
-                >
+                <div key={project.id}>
                   <ProjectCard project={project} onPlay={onPlay} />
                 </div>
               ))}
             </div>
-            {/* Fade Indicator */}
-            <div className="absolute top-0 right-0 bottom-6 w-16 bg-gradient-to-l from-[#020817] to-transparent pointer-events-none md:hidden" />
           </div>
         )}
 
@@ -118,18 +113,13 @@ export default function ClientSection({
                   Short-Form Content
                 </h3>
              )}
-            <div className="flex overflow-x-auto pb-4 -mx-4 px-4 sm:mx-0 sm:px-0 gap-4 scrollbar-hide snap-x snap-mandatory">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4">
               {portraitProjects.map((project) => (
-                <div
-                  key={project.id}
-                  className="snap-center flex-shrink-0 w-[260px] sm:w-[240px]"
-                >
+                <div key={project.id}>
                   <ProjectCard project={project} onPlay={onPlay} />
                 </div>
               ))}
             </div>
-             {/* Fade Indicator */}
-             <div className="absolute top-0 right-0 bottom-4 w-16 bg-gradient-to-l from-[#020817] to-transparent pointer-events-none md:hidden" />
           </div>
         )}
       </div>

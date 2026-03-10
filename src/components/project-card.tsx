@@ -1,13 +1,10 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Play } from "lucide-react";
 import GlassmorphismCard from "@/components/glassmorphism-card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { VideoProject } from "@/types/videos";
 import { getVideoEmbedUrl, getVideoThumbnailUrl, isGoogleDriveLink, isInstagramLink } from "@/lib/helper";
 
@@ -28,10 +25,10 @@ export default function ProjectCard({ project, onPlay }: ProjectCardProps) {
 
     return (
         <div className="h-full">
-            <GlassmorphismCard className="h-full group hover:shadow-2xl hover:shadow-amber-900/10 transition-shadow duration-500 flex flex-col">
-                <div className="flex flex-col h-full p-5">
+            <GlassmorphismCard className="h-full group hover:shadow-2xl hover:shadow-amber-900/10 transition-shadow duration-500 flex flex-col p-3">
+                <div className="flex flex-col h-full">
                     {/* Media Area */}
-                    <div className={`relative overflow-hidden rounded-2xl mb-5 shadow-lg bg-black isolate ${isReel ? "aspect-[9/16]" : "aspect-video"}`}>
+                    <div className={`relative overflow-hidden rounded-xl mb-3 shadow-lg bg-black isolate ${isReel ? "aspect-[9/16]" : "aspect-video"}`}>
                             <div
                                 className="relative w-full h-full cursor-pointer group/thumb"
                                 onClick={handlePlayClick}
@@ -82,60 +79,18 @@ export default function ProjectCard({ project, onPlay }: ProjectCardProps) {
                             </div>
                     </div>
 
-                    {/* Content Area */}
-                    <div className="flex-1 flex flex-col relative w-full">
-                        {/* Category Tags - Absolute positioning on top right or just below title if preferred */}
-                        <div className="flex gap-2 mb-3 flex-wrap">
-                            {project.category.slice(0, 2).map((cat) => (
-                                <Badge key={cat} variant="secondary" className="bg-white/5 hover:bg-white/10 text-gray-400 text-[10px] font-normal border-none">
-                                    {cat}
-                                </Badge>
-                            ))}
+                    {/* Content Area - Minimalist Logo & Brand Name ONLY */}
+                    <div className="flex items-center gap-3 px-1 pb-1">
+                        <div className="w-8 h-8 rounded-full overflow-hidden border border-white/10 bg-white/5 p-1 shrink-0">
+                            <Image
+                                src={project.client_image || "/placeholder.svg"}
+                                alt={project.client_name}
+                                width={32}
+                                height={32}
+                                className="w-full h-full object-contain rounded-full"
+                            />
                         </div>
-
-                        <Link href={`/project/${project.id}`} className="block group/title">
-                            <h3 className="text-xl font-bold mb-1 text-white group-hover/title:text-amber-400 transition-colors line-clamp-2 leading-tight">
-                                {project.video_title}
-                            </h3>
-                        </Link>
-
-                        {project.role && (
-                            <p className="text-sm text-amber-400/80 font-medium mb-3">{project.role}</p>
-                        )}
-
-                        <p className="text-gray-400 text-sm mb-6 line-clamp-2 leading-relaxed">
-                            {project.video_description}
-                        </p>
-
-                        {/* Actions & Metadata */}
-                        <div className="mt-auto pt-5 border-t border-white/5 flex items-center justify-between">
-                            <div className="flex items-center space-x-3">
-                                <div className="w-8 h-8 rounded-full overflow-hidden border border-white/10 bg-white/5 p-1">
-                                    <Image
-                                        src={project.client_image || "/placeholder.svg"}
-                                        alt={project.client_name}
-                                        width={32}
-                                        height={32}
-                                        className="w-full h-full object-contain rounded-full"
-                                    />
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="text-xs font-medium text-white line-clamp-1 max-w-[100px] truncate">{project.client_name}</span>
-                                    <span className="text-[10px] text-gray-500">{new Date(project.publish_date).toLocaleDateString()}</span>
-                                </div>
-                            </div>
-
-                            <div className="flex items-center gap-2">
-                                <Link href={`/project/${project.id}`}>
-                                    <Button
-                                        size="sm"
-                                        className="h-8 px-5 text-xs font-medium text-white bg-white/10 border border-white/10 rounded-full shadow-lg hover:bg-amber-500 hover:border-amber-400 hover:text-white transition-all duration-300 backdrop-blur-xl group-hover:scale-105"
-                                    >
-                                        Details
-                                    </Button>
-                                </Link>
-                            </div>
-                        </div>
+                        <span className="text-sm font-semibold text-white/90 line-clamp-1 truncate">{project.client_name}</span>
                     </div>
                 </div>
             </GlassmorphismCard>
