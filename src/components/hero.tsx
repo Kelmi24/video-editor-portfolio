@@ -21,7 +21,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen pt-32 pb-40 lg:py-0 lg:h-screen lg:min-h-[800px] flex items-center justify-center overflow-hidden">
       {/* Background Ambience - Warm Gold Glow */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-amber-900/10 rounded-full blur-[120px] animate-pulse" />
@@ -141,7 +141,7 @@ export default function Hero() {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-          className="flex-1 max-w-[320px] w-full hidden lg:block mx-auto"
+          className="flex-1 max-w-[320px] w-full mx-auto mt-12 lg:mt-0"
         >
           <div className="relative aspect-[9/16] rounded-2xl overflow-hidden border border-amber-500/15 shadow-[0_0_60px_rgba(212,168,67,0.08)]">
             <iframe
