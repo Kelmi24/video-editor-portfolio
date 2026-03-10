@@ -141,11 +141,11 @@ export default function Hero() {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-          className="flex-1 max-w-lg w-full hidden lg:block"
+          className="flex-1 max-w-[320px] w-full hidden lg:block mx-auto"
         >
-          <div className="relative aspect-video rounded-2xl overflow-hidden border border-amber-500/15 shadow-[0_0_60px_rgba(212,168,67,0.08)]">
+          <div className="relative aspect-[9/16] rounded-2xl overflow-hidden border border-amber-500/15 shadow-[0_0_60px_rgba(212,168,67,0.08)]">
             <iframe
-              src="https://www.youtube.com/embed/g3qrEA7QEes?autoplay=1&mute=1&loop=1&playlist=g3qrEA7QEes&controls=0&showinfo=0&rel=0&modestbranding=1"
+              src="https://drive.google.com/file/d/11cbWY7LTs4TaJpJ0Fke3nlI9x3SFwEsg/preview"
               title="Showreel Preview"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
