@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import GlassmorphismCard from "@/components/glassmorphism-card";
 import Hero from "@/components/hero";
@@ -11,8 +10,6 @@ import Testimonials from "@/components/testimonials";
 import { allVideoProjects } from "@/db/projects";
 import type { VideoProject } from "@/types/videos";
 
-import VideoModal from "@/components/video-modal";
-
 // Extract unique categories from projects
 function getUniqueCategories(projects: VideoProject[]): string[] {
   const cats = new Set<string>();
@@ -21,7 +18,6 @@ function getUniqueCategories(projects: VideoProject[]): string[] {
 }
 
 export default function Home() {
-  const [selectedProject, setSelectedProject] = useState<VideoProject | null>(null);
 
   return (
     <div className="min-h-screen relative overflow-hidden">
@@ -56,7 +52,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
               >
-                <ProjectCard project={project} onPlay={setSelectedProject} />
+                <ProjectCard project={project} onPlay={() => {}} />
               </motion.div>
             ))}
           </div>
@@ -77,7 +73,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
               >
-                <ProjectCard project={project} onPlay={setSelectedProject} />
+                <ProjectCard project={project} onPlay={() => {}} />
               </motion.div>
             ))}
           </div>
@@ -165,18 +161,11 @@ export default function Home() {
       {/* Client Testimonials */}
       <Testimonials />
 
-      {/* Call to Action Section */}
       <CTASection
         title="Ready to create magic?"
         description="Let's bring your vision to life with professional video editing, motion graphics, and cinematic storytelling."
         buttonText="Get in Touch"
         href="/contact"
-      />
-
-      {/* Video Modal */}
-      <VideoModal
-        project={selectedProject}
-        onClose={() => setSelectedProject(null)}
       />
     </div>
   );

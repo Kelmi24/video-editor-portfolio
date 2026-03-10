@@ -14,13 +14,6 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project, onPlay }: ProjectCardProps) {
-    const [imageError, setImageError] = useState(false);
-
-    const handlePlayClick = (e: React.MouseEvent) => {
-        e.preventDefault();
-        onPlay(project);
-    };
-
     const isReel = project.category.includes("Reels") || project.category.includes("Instagram Reels") || isInstagramLink(project.video_link);
 
     return (
@@ -29,62 +22,21 @@ export default function ProjectCard({ project, onPlay }: ProjectCardProps) {
                 <div className="flex flex-col h-full">
                     {/* Media Area */}
                     <div className={`relative overflow-hidden rounded-xl mb-3 shadow-lg bg-black isolate ${isReel ? "aspect-[9/16]" : "aspect-video"}`}>
-                            <div
-                                className="relative w-full h-full cursor-pointer group/thumb"
-                                onClick={handlePlayClick}
-                            >
-                                <motion.div
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    className="w-full h-full bg-gray-900 flex items-center justify-center"
-                                >
-                                    {isReel ? (
-                                        <>
-                                            <iframe
-                                                src={getVideoEmbedUrl(project.video_link) || undefined}
-                                                title={project.video_title}
-                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                allowFullScreen
-                                                loading="lazy"
-                                                className="w-full h-full border-0 pointer-events-none"
-                                            />
-                                            {/* Golden border glow effect mimicking Hero */}
-                                            <div className="absolute inset-0 rounded-xl pointer-events-none border border-amber-500/10" />
-                                        </>
-                                    ) : (
-                                        !imageError ? (
-                                            <Image
-                                                src={getVideoThumbnailUrl(project.cover_image, project.video_link) || "/placeholder.svg"}
-                                                alt={project.video_title}
-                                                fill
-                                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                                unoptimized={(getVideoThumbnailUrl(project.cover_image, project.video_link) || "").includes("instagram.com")}
-                                                onError={() => setImageError(true)}
-                                            />
-                                        ) : (
-                                            <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 group-hover:from-zinc-800 group-hover:via-zinc-700 group-hover:to-zinc-800 transition-all duration-500">
-                                                <div className="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center mb-3 border border-white/10">
-                                                    <Play className="ml-0.5 text-amber-400/60" size={24} />
-                                                </div>
-                                                <span className="text-white/15 font-semibold text-xs uppercase tracking-[0.3em]">
-                                                    Video
-                                                </span>
-                                            </div>
-                                        )
-                                    )}
-                                </motion.div>
-
-                                {/* Play Button Overlay */}
-                                <div className="absolute inset-0 bg-black/20 group-hover/thumb:bg-black/40 transition-colors duration-300 flex items-center justify-center backdrop-blur-[0px] group-hover/thumb:backdrop-blur-[2px]">
-                                    <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 text-white transform scale-90 group-hover/thumb:scale-110 transition-all duration-300 shadow-xl shadow-black/20">
-                                        <Play className="ml-1 fill-white" size={28} />
-                                    </div>
-                                </div>
+                            <div className="relative w-full h-full group/thumb">
+                                <iframe
+                                    src={getVideoEmbedUrl(project.video_link) || undefined}
+                                    title={project.video_title}
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                    loading="lazy"
+                                    className="w-full h-full border-0"
+                                />
+                                {/* Golden border glow effect mimicking Hero */}
+                                <div className="absolute inset-0 rounded-xl pointer-events-none border border-amber-500/10" />
 
                                 {/* Duration Badge */}
                                 {project.duration && (
-                                    <div className="absolute bottom-3 right-3 bg-black/80 backdrop-blur-sm border border-white/10 text-white text-[10px] font-bold px-2 py-1 rounded-md">
+                                    <div className="absolute bottom-3 right-3 bg-black/80 backdrop-blur-sm border border-white/10 text-white text-[10px] font-bold px-2 py-1 rounded-md pointer-events-none">
                                         {project.duration}
                                     </div>
                                 )}
