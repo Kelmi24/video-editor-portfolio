@@ -18,10 +18,13 @@ export interface VideoProject {
   challenge?: string;
   approach?: string;
   outcome?: string;
+  // Visibility
+  hidden?: boolean;
 }
 
 export interface Client {
   id: string;
   name: string;
   logo: string;
+  hidden?: boolean;
 }

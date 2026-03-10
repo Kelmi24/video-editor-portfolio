@@ -1,7 +1,11 @@
 import { VideoProject } from "@/types/videos";
 import { clientsData } from "@/db/clients";
 
-export const allVideoProjects: VideoProject[] = [
+const hiddenClientNames = clientsData
+  .filter((c) => c.hidden)
+  .map((c) => c.name);
+
+const _allVideoProjects: VideoProject[] = [
   // --- Luxury Yachts Co — Instagram Reels ---
   {
     id: "luxury-yachts-reel-1",
@@ -534,8 +538,13 @@ export const allVideoProjects: VideoProject[] = [
   },
 ];
 
+export const allVideoProjects: VideoProject[] = _allVideoProjects.filter(
+  (p) => !hiddenClientNames.includes(p.client_name)
+);
+
 export const getGroupedProjects = () => {
   return clientsData
+    .filter((client) => !client.hidden)
     .map((client) => {
       const projects = allVideoProjects.filter(
         (p) => p.client_name === client.name

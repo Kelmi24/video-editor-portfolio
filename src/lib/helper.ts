@@ -118,7 +118,7 @@ export function getFeaturedProjects(limit = 6): VideoProject[] {
 }
 
 export function getClients(): Client[] {
-  return clientsData;
+  return clientsData.filter((c) => !c.hidden);
 }
 
 // Helper function to check if a URL is a Google Drive link

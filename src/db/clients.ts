@@ -5,16 +5,19 @@ export const clientsData: Client[] = [
     id: "decluttr",
     name: "Decluttr",
     logo: "/companies/decluttr.png",
+    hidden: true,
   },
   {
     id: "ichiban",
     name: "Ichiban",
     logo: "/companies/ichiban.png",
+    hidden: true,
   },
   {
     id: "luxury-yachts-co",
     name: "Luxury Yachts Co",
     logo: "/companies/luxury-yachts-co.png",
+    hidden: true,
   },
   {
     id: "nft-co",
