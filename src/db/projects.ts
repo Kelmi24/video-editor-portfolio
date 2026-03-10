@@ -551,7 +551,7 @@ const _allVideoProjects: VideoProject[] = [
     video_link:
       "https://drive.google.com/file/d/1R7Z9S0BjD9f_FCqkr1xWKZmZ9YMU7q1A/view?usp=sharing",
     project_images: [],
-    category: ["Promo"],
+    category: ["Promo", "Reels"],
     duration: "1:00",
     software_used: ["Adobe Premiere Pro"],
     role: "Lead Editor",
@@ -571,7 +571,7 @@ const _allVideoProjects: VideoProject[] = [
     video_link:
       "https://drive.google.com/file/d/1MZL412j8Zx8NoYeemPzv7YWbPVkDMtwQ/view?usp=drive_link",
     project_images: [],
-    category: ["Promo"],
+    category: ["Promo", "Reels"],
     duration: "1:00",
     software_used: ["Adobe Premiere Pro"],
     role: "Lead Editor",
@@ -590,7 +590,7 @@ const _allVideoProjects: VideoProject[] = [
     video_link:
       "https://drive.google.com/file/d/1vGssprq_duTDTUlFSRuwVjHoQ_1rDmKc/view?usp=drive_link",
     project_images: [],
-    category: ["Promo"],
+    category: ["Promo", "Reels"],
     duration: "1:00",
     software_used: ["Adobe Premiere Pro"],
     role: "Lead Editor",
@@ -630,7 +630,7 @@ const _allVideoProjects: VideoProject[] = [
     video_link:
       "https://drive.google.com/file/d/11cbWY7LTs4TaJpJ0Fke3nlI9x3SFwEsg/view?usp=sharing",
     project_images: [],
-    category: ["Promo"],
+    category: ["Promo", "Reels"],
     duration: "1:00",
     software_used: ["Adobe Premiere Pro", "After Effects"],
     role: "Editor & Motion Designer",
@@ -650,7 +650,7 @@ const _allVideoProjects: VideoProject[] = [
     video_link:
       "https://drive.google.com/file/d/1jn2cdmCuqih0lN9nd_XdGxbhvXywzL6L/view?usp=sharing",
     project_images: [],
-    category: ["Promo"],
+    category: ["Promo", "Reels"],
     duration: "1:00",
     software_used: ["Adobe Premiere Pro"],
     role: "Lead Editor",
@@ -669,7 +669,7 @@ const _allVideoProjects: VideoProject[] = [
     video_link:
       "https://drive.google.com/file/d/13Xu7-HDffTgXz5U2JGjTmYSzDcSqz9fq/view?usp=sharing",
     project_images: [],
-    category: ["Promo"],
+    category: ["Promo", "Reels"],
     duration: "1:00",
     software_used: ["Adobe Premiere Pro"],
     role: "Lead Editor",
