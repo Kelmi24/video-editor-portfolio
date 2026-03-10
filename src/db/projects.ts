@@ -610,7 +610,7 @@ const _allVideoProjects: VideoProject[] = [
     video_link:
       "https://drive.google.com/file/d/1qS99_-xnFR2mNs_SALkm3t8ixojwzowT/view?usp=sharing",
     project_images: [],
-    category: ["Promo"],
+    category: ["Promo", "Reels"],
     duration: "1:00",
     software_used: ["Adobe Premiere Pro"],
     role: "Lead Editor",
