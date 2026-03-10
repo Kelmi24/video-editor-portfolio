@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { VideoProject } from "@/types/videos";
-import { getVideoEmbedUrl, isInstagramLink, isGoogleDriveLink } from "@/lib/helper";
+import { getVideoEmbedUrl, isInstagramLink, isGoogleDriveLink, getGoogleDriveFileId } from "@/lib/helper";
 import Link from "next/link";
 
 interface VideoModalProps {
@@ -52,7 +52,15 @@ export default function VideoModal({ project, onClose }: VideoModalProps) {
             }`}
             onClick={(e) => e.stopPropagation()}
           >
-            {embedUrl ? (
+            {isGoogleDriveLink(project.video_link) && getGoogleDriveFileId(project.video_link) ? (
+                <video
+                    src={`https://drive.google.com/uc?export=download&id=${getGoogleDriveFileId(project.video_link)}`}
+                    autoPlay
+                    controls
+                    playsInline
+                    className="w-full h-full object-contain bg-black"
+                />
+            ) : embedUrl ? (
               <iframe
                 src={(isGoogleDriveLink(project.video_link) || isInstagramLink(project.video_link)) 
                   ? embedUrl 

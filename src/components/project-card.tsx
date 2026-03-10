@@ -14,6 +14,13 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project, onPlay }: ProjectCardProps) {
+    const [imageError, setImageError] = useState(false);
+
+    const handlePlayClick = (e: React.MouseEvent) => {
+        e.preventDefault();
+        onPlay(project);
+    };
+
     const isReel = project.category.includes("Reels") || project.category.includes("Instagram Reels") || isInstagramLink(project.video_link);
 
     return (
@@ -22,17 +29,24 @@ export default function ProjectCard({ project, onPlay }: ProjectCardProps) {
                 <div className="flex flex-col h-full">
                     {/* Media Area */}
                     <div className={`relative overflow-hidden rounded-xl mb-3 shadow-lg bg-black isolate ${isReel ? "aspect-[9/16]" : "aspect-video"}`}>
-                            <div className="relative w-full h-full group/thumb">
+                            <div className="relative w-full h-full cursor-pointer group/thumb" onClick={handlePlayClick}>
                                 <iframe
                                     src={getVideoEmbedUrl(project.video_link) || undefined}
                                     title={project.video_title}
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowFullScreen
                                     loading="lazy"
-                                    className="w-full h-full border-0"
+                                    className="w-full h-full border-0 pointer-events-none"
                                 />
                                 {/* Golden border glow effect mimicking Hero */}
                                 <div className="absolute inset-0 rounded-xl pointer-events-none border border-amber-500/10" />
+
+                                {/* Play Button Overlay */}
+                                <div className="absolute inset-0 bg-black/20 group-hover/thumb:bg-black/40 transition-colors duration-300 flex items-center justify-center backdrop-blur-[0px] group-hover/thumb:backdrop-blur-[2px]">
+                                    <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 text-white transform scale-90 group-hover/thumb:scale-110 transition-all duration-300 shadow-xl shadow-black/20 pointer-events-none">
+                                        <Play className="ml-1 fill-white" size={28} />
+                                    </div>
+                                </div>
 
                                 {/* Duration Badge */}
                                 {project.duration && (
