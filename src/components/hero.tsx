@@ -145,7 +145,7 @@ export default function Hero() {
         >
           <div className="relative aspect-video rounded-2xl overflow-hidden border border-amber-500/15 shadow-[0_0_60px_rgba(212,168,67,0.08)]">
             <iframe
-              src="https://www.youtube.com/embed/LBJ2YllJeRQ?autoplay=1&mute=1&loop=1&playlist=LBJ2YllJeRQ&controls=0&showinfo=0&rel=0&modestbranding=1"
+              src="https://www.youtube.com/embed/g3qrEA7QEes?autoplay=1&mute=1&loop=1&playlist=g3qrEA7QEes&controls=0&showinfo=0&rel=0&modestbranding=1"
               title="Showreel Preview"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
