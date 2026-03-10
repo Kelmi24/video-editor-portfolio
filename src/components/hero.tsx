@@ -60,7 +60,7 @@ export default function Hero() {
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
               className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-yellow-600 pb-4"
             >
-              I Engineer Emotion.
+              I Craft Raw Footage Into Powerful Brand Stories.
             </motion.span>
           </h1>
 
