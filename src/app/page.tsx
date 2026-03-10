@@ -6,6 +6,7 @@ import GlassmorphismCard from "@/components/glassmorphism-card";
 import Hero from "@/components/hero";
 import ClientCarousel from "@/components/client-carousel";
 import ProjectCard from "@/components/project-card";
+import AboutSection from "@/components/about-section";
 import CTASection from "@/components/CTASection";
 import Testimonials from "@/components/testimonials";
 import { allVideoProjects } from "@/db/projects";
@@ -82,6 +83,9 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* About Section */}
+      <AboutSection />
 
       {/* What I Can Do Section */}
       <section className="py-24 px-4 sm:px-6 relative">

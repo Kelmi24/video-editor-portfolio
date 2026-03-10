@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Marquee from "@/components/ui/marquee";
-import CTASection from "@/components/CTASection";
 import {
   Linkedin,
   Instagram,
@@ -20,15 +19,17 @@ import { journey } from "@/db/journey";
 import { videoEditingSkills } from "@/db/skills";
 import GlassmorphismCard from "@/components/glassmorphism-card";
 
-export default function AboutPage() {
+export default function AboutSection() {
   return (
-    <div className="min-h-screen pt-32 pb-12 md:py-24 px-4 overflow-hidden">
+    <section id="about" className="py-24 px-4 overflow-hidden relative border-t border-white/5 bg-black/50">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
       <div className="max-w-7xl mx-auto w-full">
         
         {/* HERO HEADER */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="text-center mb-16 md:mb-24"
         >
           <div className="inline-block px-4 py-1.5 rounded-full border border-amber-500/20 bg-amber-500/10 backdrop-blur-md mb-6 shadow-[0_0_20px_rgba(212,168,67,0.1)]">
@@ -36,12 +37,12 @@ export default function AboutPage() {
               The Man Behind the Magic
             </span>
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight mb-6">
+          <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-6">
             Visual Storyteller.<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-yellow-500">
               Motion Designer.
             </span>
-          </h1>
+          </h2>
           <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed">
             I don't just edit footage — I craft narratives that drive engagement, emotion, and results.
           </p>
@@ -67,7 +68,7 @@ export default function AboutPage() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
               
               <div className="absolute bottom-8 left-8 right-8 text-left pointer-events-none">
-                <h2 className="text-3xl font-bold text-white mb-1">GEDE RICKELME</h2>
+                <h3 className="text-3xl font-bold text-white mb-1">GEDE RICKELME</h3>
                 <p className="text-amber-400 font-medium tracking-wide uppercase text-sm">Indonesia based</p>
               </div>
             </div>
@@ -123,14 +124,14 @@ export default function AboutPage() {
         </div>
 
         {/* TIMELINE SECTION */}
-        <section className="mb-32 max-w-4xl mx-auto">
+        <div className="mb-32 max-w-4xl mx-auto">
            <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-center mb-16"
            >
-             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">My Journey</h2>
+             <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">My Journey</h3>
              <div className="h-1 w-20 bg-amber-500 mx-auto rounded-full" />
            </motion.div>
 
@@ -164,7 +165,7 @@ export default function AboutPage() {
                       <div className="w-full md:w-1/2">
                           <GlassmorphismCard className="p-6 md:p-8 hover:border-amber-500/30 transition-colors duration-300">
                              <div className="md:hidden text-amber-500 font-mono tracking-widest text-sm mb-2">{item.year}</div>
-                             <h3 className="text-xl font-bold text-white mb-1">{item.title}</h3>
+                             <h4 className="text-xl font-bold text-white mb-1">{item.title}</h4>
                              <p className="text-gray-400 text-sm mb-4 font-medium">{item.company}</p>
                              <p className="text-gray-300 text-sm leading-relaxed">{item.description}</p>
                           </GlassmorphismCard>
@@ -174,17 +175,17 @@ export default function AboutPage() {
                );
              })}
            </div>
-        </section>
+        </div>
 
         {/* TOOLS I USE */}
-        <section className="mb-32">
+        <div className="mb-32">
            <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-center mb-12"
            >
-             <h2 className="text-3xl font-bold text-white mb-4">Tools of the Trade</h2>
+             <h3 className="text-3xl font-bold text-white mb-4">Tools of the Trade</h3>
              <p className="text-gray-400">The arsenal behind every frame.</p>
            </motion.div>
 
@@ -216,22 +217,22 @@ export default function AboutPage() {
                 </motion.div>
               ))}
            </div>
-        </section>
+        </div>
 
-        {/* CLIENTS MARQUEE (Reuse existing structure but clean up) */}
+        {/* CLIENTS MARQUEE */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mb-20"
+          className="mb-10"
         >
           <div className="text-center mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">Trusted By</h2>
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">Trusted By</h3>
             <div className="h-1 w-20 bg-amber-500 mx-auto rounded-full" />
           </div>
 
           <div
-            className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-lg bg-background py-10"
+            className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-lg bg-transparent py-10"
             style={{ maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)', WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}
           >
             <Marquee className="[--duration:20s]">
@@ -251,13 +252,7 @@ export default function AboutPage() {
           </div>
         </motion.div>
 
-        <CTASection
-          title="Ready to Start Your Journey?"
-          description="Let's collaborate on your next big project."
-          buttonText="Get a Quote"
-          href="/contact"
-        />
       </div>
-    </div>
+    </section>
   );
 }
