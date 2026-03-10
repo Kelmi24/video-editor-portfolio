@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { VideoProject } from "@/types/videos";
 import { getVideoEmbedUrl, isInstagramLink, isGoogleDriveLink, getGoogleDriveFileId } from "@/lib/helper";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 interface VideoModalProps {
   project: VideoProject | null;
@@ -13,6 +14,13 @@ interface VideoModalProps {
 }
 
 export default function VideoModal({ project, onClose }: VideoModalProps) {
+  const [videoError, setVideoError] = useState(false);
+
+  // Reset video error state when project changes
+  useEffect(() => {
+    setVideoError(false);
+  }, [project]);
+
   if (!project) return null;
 
   const embedUrl = getVideoEmbedUrl(project.video_link);
@@ -28,11 +36,11 @@ export default function VideoModal({ project, onClose }: VideoModalProps) {
     <AnimatePresence>
       {project && (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md"
-          onClick={onClose}
+           initial={{ opacity: 0 }}
+           animate={{ opacity: 1 }}
+           exit={{ opacity: 0 }}
+           className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md"
+           onClick={onClose}
         >
           {/* Close Button */}
           <button
@@ -50,15 +58,16 @@ export default function VideoModal({ project, onClose }: VideoModalProps) {
             className={`relative w-full bg-black/50 rounded-2xl overflow-hidden shadow-2xl border border-white/10 ${
               isVertical ? "max-w-sm aspect-[9/16] max-h-[85vh]" : "max-w-5xl aspect-video"
             }`}
-            onClick={(e) => e.stopPropagation()}
+             onClick={(e) => e.stopPropagation()}
           >
-            {isGoogleDriveLink(project.video_link) && getGoogleDriveFileId(project.video_link) ? (
+            {isGoogleDriveLink(project.video_link) && getGoogleDriveFileId(project.video_link) && !videoError ? (
                 <video
                     src={`https://drive.google.com/uc?export=download&id=${getGoogleDriveFileId(project.video_link)}`}
                     autoPlay
                     controls
                     playsInline
                     className="w-full h-full object-contain bg-black"
+                    onError={() => setVideoError(true)}
                 />
             ) : embedUrl ? (
               <iframe
