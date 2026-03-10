@@ -50,9 +50,9 @@ export default function Hero() {
               initial={{ opacity: 0, y: 50, rotate: 2 }}
               animate={{ opacity: 1, y: 0, rotate: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-              className="block text-[24px] bg-gradient-to-br from-white via-white to-gray-500 bg-clip-text text-transparent mb-4 md:mb-6"
+              className="block text-white mb-4 md:mb-6"
             >
-              I Don&apos;t Just Edit Video,
+              I Don&apos;t Just Edit Videos,
             </motion.span>
             <motion.span
               initial={{ opacity: 0, y: 50, rotate: -2 }}
