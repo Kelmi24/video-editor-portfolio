@@ -8,14 +8,10 @@ import ClientCarousel from "@/components/client-carousel";
 import ProjectCard from "@/components/project-card";
 import CTASection from "@/components/CTASection";
 import Testimonials from "@/components/testimonials";
-import {
-  allVideoProjects,
-  getGroupedProjects,
-} from "@/db/projects";
+import { allVideoProjects } from "@/db/projects";
 import type { VideoProject } from "@/types/videos";
 
 import VideoModal from "@/components/video-modal";
-import ClientSection from "@/components/client-section";
 
 // Extract unique categories from projects
 function getUniqueCategories(projects: VideoProject[]): string[] {
@@ -27,8 +23,6 @@ function getUniqueCategories(projects: VideoProject[]): string[] {
 export default function Home() {
   const [selectedProject, setSelectedProject] = useState<VideoProject | null>(null);
 
-  const groupedProjects = getGroupedProjects();
-
   return (
     <div className="min-h-screen relative overflow-hidden">
       <Hero />
@@ -37,25 +31,57 @@ export default function Home() {
       <ClientCarousel />
 
       {/* Client Projects Sections */}
-      <div className="py-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-12 text-center">
+      <div id="projects" className="py-20 max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="mb-16 text-center">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white tracking-tight">
                 Selected <span className="bg-gradient-to-r from-amber-400 to-yellow-500 bg-clip-text text-transparent">Works</span>
             </h2>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto font-light leading-relaxed">
-                A curated collection of projects organized by partner.
+                Featured videos and short-form content.
             </p>
         </div>
 
-        {groupedProjects.map((group, index) => (
-          <ClientSection
-            key={group.client.id}
-            client={group.client}
-            projects={group.projects}
-            index={index}
-            onPlay={setSelectedProject}
-          />
-        ))}
+        {/* Global Landscape Projects Row */}
+        <div className="mb-16">
+          <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-6 px-1 border-b border-white/10 pb-2">
+            Featured Videos
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {allVideoProjects
+              .filter((p) => !(p.category.includes("Reels") || p.category.includes("Instagram Reels") || p.video_link.includes("instagram.com")))
+              .map((project) => (
+              <motion.div 
+                key={project.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+              >
+                <ProjectCard project={project} onPlay={setSelectedProject} />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Global Portrait Projects Row */}
+        <div>
+          <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-6 px-1 border-b border-white/10 pb-2">
+            Short-Form Content
+          </h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4">
+            {allVideoProjects
+              .filter((p) => p.category.includes("Reels") || p.category.includes("Instagram Reels") || p.video_link.includes("instagram.com"))
+              .map((project) => (
+              <motion.div 
+                key={project.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+              >
+                <ProjectCard project={project} onPlay={setSelectedProject} />
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* What I Can Do Section */}
