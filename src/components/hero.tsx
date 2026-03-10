@@ -45,7 +45,7 @@ export default function Hero() {
           </motion.div>
 
           {/* Main Title - Split for animation */}
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white mb-8 leading-[0.95]">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-white mb-8 leading-[0.95]">
             <motion.span
               initial={{ opacity: 0, y: 50, rotate: 2 }}
               animate={{ opacity: 1, y: 0, rotate: 0 }}
