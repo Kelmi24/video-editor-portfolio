@@ -536,6 +536,144 @@ const _allVideoProjects: VideoProject[] = [
     software_used: ["After Effects", "Adobe Premiere Pro"],
     role: "Motion Designer",
   },
+  // --- Joseph ---
+  {
+    id: "joseph-video-1",
+    video_title: "Joseph — Video Project",
+    video_description:
+      "Professional video project crafted for Joseph, featuring polished editing, clean transitions, and engaging visual storytelling.",
+    tags: ["Video Project", "Professional", "Client Work"],
+    cover_image: "/projects/placeholder-thumb.jpg",
+    publish_date: "2024-04-15",
+    client_name: "Joseph",
+    client_image: "/companies/placeholder-client.png",
+    client_feedback: "",
+    video_link:
+      "https://drive.google.com/file/d/1R7Z9S0BjD9f_FCqkr1xWKZmZ9YMU7q1A/view?usp=sharing",
+    project_images: [],
+    category: ["Promo"],
+    duration: "1:00",
+    software_used: ["Adobe Premiere Pro"],
+    role: "Lead Editor",
+  },
+  // --- VacuVin ---
+  {
+    id: "vacuvin-video-1",
+    video_title: "VacuVin — Video #1",
+    video_description:
+      "Engaging product video for VacuVin, showcasing the brand's innovative products with clean visuals, dynamic editing, and compelling storytelling.",
+    tags: ["Product Video", "Brand Content", "Professional"],
+    cover_image: "/projects/placeholder-thumb.jpg",
+    publish_date: "2024-05-01",
+    client_name: "VacuVin",
+    client_image: "/companies/placeholder-client.png",
+    client_feedback: "",
+    video_link:
+      "https://drive.google.com/file/d/1MZL412j8Zx8NoYeemPzv7YWbPVkDMtwQ/view?usp=drive_link",
+    project_images: [],
+    category: ["Promo"],
+    duration: "1:00",
+    software_used: ["Adobe Premiere Pro"],
+    role: "Lead Editor",
+  },
+  {
+    id: "vacuvin-video-2",
+    video_title: "VacuVin — Video #2",
+    video_description:
+      "Second product video for VacuVin, featuring polished post-production, attention-grabbing visuals, and brand-consistent styling for social media distribution.",
+    tags: ["Product Video", "Brand Content", "Social Media"],
+    cover_image: "/projects/placeholder-thumb.jpg",
+    publish_date: "2024-05-10",
+    client_name: "VacuVin",
+    client_image: "/companies/placeholder-client.png",
+    client_feedback: "",
+    video_link:
+      "https://drive.google.com/file/d/1vGssprq_duTDTUlFSRuwVjHoQ_1rDmKc/view?usp=drive_link",
+    project_images: [],
+    category: ["Promo"],
+    duration: "1:00",
+    software_used: ["Adobe Premiere Pro"],
+    role: "Lead Editor",
+  },
+  // --- Jean Yip ---
+  {
+    id: "jean-yip-video-1",
+    video_title: "Jean Yip — Video Project",
+    video_description:
+      "Professional video project for Jean Yip, combining sleek visuals, smooth transitions, and brand-aligned editing to elevate their digital presence.",
+    tags: ["Brand Video", "Professional", "Client Work"],
+    cover_image: "/projects/placeholder-thumb.jpg",
+    publish_date: "2024-06-01",
+    client_name: "Jean Yip",
+    client_image: "/companies/placeholder-client.png",
+    client_feedback: "",
+    video_link:
+      "https://drive.google.com/file/d/1qS99_-xnFR2mNs_SALkm3t8ixojwzowT/view?usp=sharing",
+    project_images: [],
+    category: ["Promo"],
+    duration: "1:00",
+    software_used: ["Adobe Premiere Pro"],
+    role: "Lead Editor",
+  },
+  // --- Personal Project ---
+  {
+    id: "personal-project-1",
+    video_title: "Personal Project — Creative Edit",
+    video_description:
+      "A personal creative project showcasing experimental editing techniques, artistic expression, and cinematic storytelling as a demonstration of creative range.",
+    tags: ["Personal", "Creative", "Experimental", "Cinematic"],
+    cover_image: "/projects/placeholder-thumb.jpg",
+    publish_date: "2024-06-15",
+    client_name: "Personal Project",
+    client_image: "/companies/placeholder-client.png",
+    client_feedback: "",
+    video_link:
+      "https://drive.google.com/file/d/11cbWY7LTs4TaJpJ0Fke3nlI9x3SFwEsg/view?usp=sharing",
+    project_images: [],
+    category: ["Promo"],
+    duration: "1:00",
+    software_used: ["Adobe Premiere Pro", "After Effects"],
+    role: "Editor & Motion Designer",
+  },
+  // --- Good Laundry ---
+  {
+    id: "good-laundry-video-1",
+    video_title: "Good Laundry — Video #1",
+    video_description:
+      "Engaging promotional video for Good Laundry, featuring clean visuals, professional editing, and compelling brand storytelling to drive customer engagement.",
+    tags: ["Promo", "Brand Content", "Professional"],
+    cover_image: "/projects/placeholder-thumb.jpg",
+    publish_date: "2024-07-01",
+    client_name: "Good Laundry",
+    client_image: "/companies/placeholder-client.png",
+    client_feedback: "",
+    video_link:
+      "https://drive.google.com/file/d/1jn2cdmCuqih0lN9nd_XdGxbhvXywzL6L/view?usp=sharing",
+    project_images: [],
+    category: ["Promo"],
+    duration: "1:00",
+    software_used: ["Adobe Premiere Pro"],
+    role: "Lead Editor",
+  },
+  {
+    id: "good-laundry-video-2",
+    video_title: "Good Laundry — Video #2",
+    video_description:
+      "Second promotional video for Good Laundry, with polished post-production, dynamic transitions, and optimized content for social media platforms.",
+    tags: ["Promo", "Social Media", "Brand Content"],
+    cover_image: "/projects/placeholder-thumb.jpg",
+    publish_date: "2024-07-10",
+    client_name: "Good Laundry",
+    client_image: "/companies/placeholder-client.png",
+    client_feedback: "",
+    video_link:
+      "https://drive.google.com/file/d/13Xu7-HDffTgXz5U2JGjTmYSzDcSqz9fq/view?usp=sharing",
+    project_images: [],
+    category: ["Promo"],
+    duration: "1:00",
+    software_used: ["Adobe Premiere Pro"],
+    role: "Lead Editor",
+  },
 ];
 
 export const allVideoProjects: VideoProject[] = _allVideoProjects.filter(

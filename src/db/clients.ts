@@ -59,4 +59,29 @@ export const clientsData: Client[] = [
     name: "Intrapreneur",
     logo: "/companies/entrepreneurs-id.png",
   },
+  {
+    id: "joseph",
+    name: "Joseph",
+    logo: "/companies/placeholder-client.png",
+  },
+  {
+    id: "vacuvin",
+    name: "VacuVin",
+    logo: "/companies/placeholder-client.png",
+  },
+  {
+    id: "jean-yip",
+    name: "Jean Yip",
+    logo: "/companies/placeholder-client.png",
+  },
+  {
+    id: "personal-project",
+    name: "Personal Project",
+    logo: "/companies/placeholder-client.png",
+  },
+  {
+    id: "good-laundry",
+    name: "Good Laundry",
+    logo: "/companies/placeholder-client.png",
+  },
 ];
