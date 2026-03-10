@@ -38,28 +38,40 @@ export default function ProjectCard({ project, onPlay }: ProjectCardProps) {
                                     animate={{ opacity: 1 }}
                                     className="w-full h-full bg-gray-900 flex items-center justify-center"
                                 >
-                                    {!imageError ? (
-                                        <Image
-                                            src={getVideoThumbnailUrl(project.cover_image, project.video_link)}
-                                            alt={project.video_title}
-                                            fill
-                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                            unoptimized={getVideoThumbnailUrl(project.cover_image, project.video_link).includes("instagram.com")}
-                                            onError={() => setImageError(true)}
-                                        />
+                                    {isReel ? (
+                                        <>
+                                            <iframe
+                                                src={getVideoEmbedUrl(project.video_link) || undefined}
+                                                title={project.video_title}
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                allowFullScreen
+                                                loading="lazy"
+                                                className="w-full h-full border-0 pointer-events-none"
+                                            />
+                                            {/* Golden border glow effect mimicking Hero */}
+                                            <div className="absolute inset-0 rounded-xl pointer-events-none border border-amber-500/10" />
+                                        </>
                                     ) : (
-                                        <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 group-hover:from-zinc-800 group-hover:via-zinc-700 group-hover:to-zinc-800 transition-all duration-500">
-                                            <div className="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center mb-3 border border-white/10">
-                                                <Play className="ml-0.5 text-amber-400/60" size={24} />
+                                        !imageError ? (
+                                            <Image
+                                                src={getVideoThumbnailUrl(project.cover_image, project.video_link) || "/placeholder.svg"}
+                                                alt={project.video_title}
+                                                fill
+                                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                                unoptimized={(getVideoThumbnailUrl(project.cover_image, project.video_link) || "").includes("instagram.com")}
+                                                onError={() => setImageError(true)}
+                                            />
+                                        ) : (
+                                            <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 group-hover:from-zinc-800 group-hover:via-zinc-700 group-hover:to-zinc-800 transition-all duration-500">
+                                                <div className="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center mb-3 border border-white/10">
+                                                    <Play className="ml-0.5 text-amber-400/60" size={24} />
+                                                </div>
+                                                <span className="text-white/15 font-semibold text-xs uppercase tracking-[0.3em]">
+                                                    Video
+                                                </span>
                                             </div>
-                                            <span className="text-white/15 font-semibold text-xs uppercase tracking-[0.3em]">
-                                                {project.category.includes("Reels") 
-                                                  || project.category.includes("Instagram Reels")
-                                                  || isInstagramLink(project.video_link) 
-                                                  ? "Reel" : "Video"}
-                                            </span>
-                                        </div>
+                                        )
                                     )}
                                 </motion.div>
 
