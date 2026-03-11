@@ -261,14 +261,8 @@
   animation: pulse-slow 8s ease-in-out infinite;
 }
 
-/* Override overrides */
-.text-gray-300 {
-  color: #d1d5db !important;
-}
 
-.text-gray-400 {
-  color: #9ca3af !important;
-}
+
 
 /* Dark theme form enhancements - Warm amber accents */
 input,

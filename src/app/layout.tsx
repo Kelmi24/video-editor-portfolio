@@ -13,6 +13,7 @@ import { Toaster } from "@/components/ui/sonner";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://rickelme-portfolio.vercel.app"),
   title: {
     default: "Gede Rickelme – Video Editor & Motion Graphics Designer",
     template: "%s | Gede Rickelme",

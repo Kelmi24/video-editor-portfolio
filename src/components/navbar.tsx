@@ -92,6 +92,8 @@ export default function Navbar() {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={isOpen}
               className="text-gray-300 hover:text-white p-2 rounded-lg hover:bg-white/5 transition-colors"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown, Play, Download } from "lucide-react";
+import { ArrowDown, Play } from "lucide-react";
 import MagneticButton from "./magnetic-button";
 
 import { useLenis } from "lenis/react";
@@ -103,36 +103,6 @@ export default function Hero() {
                 Contact Me
               </a>
             </MagneticButton>
-
-            <MagneticButton>
-              <a
-                href="/resume.pdf"
-                download
-                className="group inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-amber-400 bg-white/5 border border-amber-500/20 rounded-full backdrop-blur-md transition-all duration-300 hover:bg-amber-500/10 hover:border-amber-500/30"
-              >
-                <Download className="mr-2" size={20} />
-                Resume
-              </a>
-            </MagneticButton>
-          </motion.div>
-
-          {/* Stats Bar */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.0 }}
-            className="flex items-center justify-center lg:justify-start gap-8 mt-10"
-          >
-            {[
-              { value: "4+", label: "Years" },
-              { value: "125K+", label: "Views" },
-              { value: "8+", label: "Clients" },
-            ].map((stat, i) => (
-              <div key={i} className="text-center">
-                <div className="text-2xl font-bold text-amber-400">{stat.value}</div>
-                <div className="text-xs text-gray-500 uppercase tracking-wider">{stat.label}</div>
-              </div>
-            ))}
           </motion.div>
         </div>
 
@@ -149,6 +119,7 @@ export default function Hero() {
               title="Showreel Preview"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
+              loading="lazy"
               className="w-full h-full border-0"
             />
             {/* Golden border glow effect */}

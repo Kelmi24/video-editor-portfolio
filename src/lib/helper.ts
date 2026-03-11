@@ -176,8 +176,7 @@ export const getVideoEmbedUrl = (url: string): string | null => {
   return match ? `https://www.youtube.com/embed/${match[1]}` : null;
 };
 
-// Keep legacy function name for backward compat
-export const getYouTubeEmbedUrl = getVideoEmbedUrl;
+
 
 // Helper function to get thumbnail URL
 export const getVideoThumbnailUrl = (
@@ -222,19 +221,4 @@ export const getVideoThumbnailUrl = (
   return "/placeholder.svg";
 };
 
-// Legacy support - keep the old structure for backward compatibility if needed
-export const videoProjectsData = {
-  "Talking Head": allVideoProjects.filter((p) =>
-    p.category.includes("Talking Head")
-  ),
-  Shorts: allVideoProjects.filter((p) => p.category.includes("Shorts")),
-  Promo: allVideoProjects.filter((p) => p.category.includes("Promo")),
-  Documentary: allVideoProjects.filter((p) =>
-    p.category.includes("Documentary")
-  ),
-  Explainer: allVideoProjects.filter((p) => p.category.includes("Explainer")),
-  "Motion Graphics": allVideoProjects.filter((p) =>
-    p.category.includes("Motion Graphics")
-  ),
-  Animation: allVideoProjects.filter((p) => p.category.includes("Animation")),
-};
+

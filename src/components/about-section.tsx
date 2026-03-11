@@ -5,8 +5,6 @@ import Image from "next/image";
 import Marquee from "@/components/ui/marquee";
 import {
   Linkedin,
-  Instagram,
-  Youtube,
   MapPin,
   Clock,
   Award,
@@ -63,7 +61,8 @@ export default function AboutSection() {
                 src="/profile.png"
                 alt="Gede Rickelme"
                 fill
-                className="object-cover object-top filter grayscale group-hover:grayscale-0 transition-all duration-700 pointer-events-none"
+                priority
+                className="object-cover object-top transition-all duration-700 pointer-events-none"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
               
@@ -117,8 +116,7 @@ export default function AboutSection() {
             {/* Socials */}
             <div className="flex gap-4 pt-4">
                <a href="https://linkedin.com/in/rickelme" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 rounded-full hover:bg-[#0077b5] hover:text-white text-gray-400 transition-all duration-300 border border-white/10 hover:border-transparent"><Linkedin size={20} /></a>
-               <a href="https://instagram.com/gede.rickelme" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 rounded-full hover:bg-pink-600 hover:text-white text-gray-400 transition-all duration-300 border border-white/10 hover:border-transparent"><Instagram size={20} /></a>
-               <a href="https://youtube.com/@rickelme" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 rounded-full hover:bg-red-600 hover:text-white text-gray-400 transition-all duration-300 border border-white/10 hover:border-transparent"><Youtube size={20} /></a>
+
             </div>
           </motion.div>
         </div>

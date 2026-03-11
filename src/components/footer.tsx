@@ -3,10 +3,8 @@
 import Link from "next/link";
 import {
   Linkedin,
-  Youtube,
   Mail,
   Heart,
-  Instagram,
 } from "lucide-react";
 
 export default function Footer() {
@@ -14,16 +12,7 @@ export default function Footer() {
 
   // Social links - only show links with real URLs
   const socialLinks = [
-    {
-      name: "YouTube",
-      href: "https://youtube.com/@rickelme",
-      icon: Youtube,
-    },
-    {
-      name: "Instagram",
-      href: "https://instagram.com/gede.rickelme",
-      icon: Instagram,
-    },
+
     {
       name: "LinkedIn",
       href: "https://linkedin.com/in/rickelme",
@@ -31,7 +20,7 @@ export default function Footer() {
     },
     {
       name: "Email",
-      href: "mailto:grickelme24@gmail.com",
+      href: "mailto:gederickelme1@gmail.com",
       icon: Mail,
     },
   ];

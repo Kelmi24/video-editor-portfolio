@@ -85,10 +85,12 @@ export default function Home() {
       </div>
 
       {/* About Section */}
-      <AboutSection />
+      <div className="content-visibility-auto">
+        <AboutSection />
+      </div>
 
       {/* What I Can Do Section */}
-      <section className="py-24 px-4 sm:px-6 relative">
+      <section className="py-24 px-4 sm:px-6 relative content-visibility-auto">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -166,7 +168,9 @@ export default function Home() {
       </section>
 
       {/* Client Testimonials */}
-      <Testimonials />
+      <div className="content-visibility-auto">
+        <Testimonials />
+      </div>
 
       {/* Call to Action Section */}
       <CTASection

@@ -21,8 +21,6 @@ export default function ContactPage() {
     const name = formData.get("name") as string;
     const email = formData.get("email") as string;
     const message = formData.get("message") as string;
-    const projectType = formData.get("project-type") as string;
-    const timeline = formData.get("timeline") as string;
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -44,7 +42,7 @@ export default function ContactPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, email, message, projectType, timeline }),
+        body: JSON.stringify({ name, email, message }),
       });
 
       const result = await res.json();
@@ -121,10 +119,10 @@ export default function ContactPage() {
                   <div>
                     <p className="text-gray-400 text-sm">Email</p>
                     <a
-                      href="mailto:grickelme24@gmail.com"
+                      href="mailto:gederickelme1@gmail.com"
                       className="text-white hover:text-amber-400 transition-colors"
                     >
-                      grickelme24@gmail.com
+                      gederickelme1@gmail.com
                     </a>
                   </div>
                 </div>
@@ -252,45 +250,6 @@ export default function ContactPage() {
                       placeholder="you@example.com"
                     />
                   </div>
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="project-type"
-                    className="text-sm text-gray-300 mb-2 block"
-                  >
-                    Project Type
-                  </label>
-                  <select
-                    id="project-type"
-                    name="project-type"
-                    className="w-full bg-gray-800/50 border border-gray-600 text-white rounded-xl px-3 py-2 appearance-none cursor-pointer focus:border-amber-500/50 focus:outline-none focus:ring-2 focus:ring-amber-500/10 transition-all [&>option]:bg-gray-900 [&>option]:text-white"
-                  >
-                    <option value="">Select project type</option>
-                    <option value="youtube">YouTube Video</option>
-                    <option value="social-media">Social Media Content</option>
-                    <option value="promo">Promotional Video</option>
-                    <option value="tutorial">Tutorial/Course</option>
-                    <option value="documentary">Documentary</option>
-                    <option value="animation">Logo Animation</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="timeline"
-                    className="text-sm text-gray-300 mb-2 block"
-                  >
-                    Timeline
-                  </label>
-                  <Input
-                    id="timeline"
-                    name="timeline"
-                    type="text"
-                    className="bg-gray-800/50 border-gray-600 text-white"
-                    placeholder="e.g., 1 week, ASAP"
-                  />
                 </div>
 
                 <div>

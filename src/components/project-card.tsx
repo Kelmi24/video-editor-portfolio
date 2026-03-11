@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Play } from "lucide-react";
 import GlassmorphismCard from "@/components/glassmorphism-card";
 import { VideoProject } from "@/types/videos";
-import { getVideoEmbedUrl, getVideoThumbnailUrl, isGoogleDriveLink, isInstagramLink } from "@/lib/helper";
+import { getVideoEmbedUrl, getVideoThumbnailUrl, isInstagramLink } from "@/lib/helper";
 
 interface ProjectCardProps {
     project: VideoProject;
@@ -14,7 +14,27 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project, onPlay }: ProjectCardProps) {
-    const [imageError, setImageError] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
+    const cardRef = useRef<HTMLDivElement>(null);
+
+    // Lazy-load iframe: only mount when card is near the viewport
+    useEffect(() => {
+        const el = cardRef.current;
+        if (!el) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                    observer.disconnect();
+                }
+            },
+            { rootMargin: "200px" }
+        );
+
+        observer.observe(el);
+        return () => observer.disconnect();
+    }, []);
 
     const handlePlayClick = (e: React.MouseEvent) => {
         e.preventDefault();
@@ -22,22 +42,33 @@ export default function ProjectCard({ project, onPlay }: ProjectCardProps) {
     };
 
     const isReel = project.category.includes("Reels") || project.category.includes("Instagram Reels") || isInstagramLink(project.video_link);
+    const thumbnailUrl = getVideoThumbnailUrl(project.cover_image, project.video_link);
 
     return (
-        <div className="h-full">
+        <div className="h-full" ref={cardRef}>
             <GlassmorphismCard className="h-full group hover:shadow-2xl hover:shadow-amber-900/10 transition-shadow duration-500 flex flex-col p-3">
                 <div className="flex flex-col h-full">
                     {/* Media Area */}
                     <div className={`relative overflow-hidden rounded-xl mb-3 shadow-lg bg-black isolate ${isReel ? "aspect-[9/16]" : "aspect-video"}`}>
                             <div className="absolute inset-0 w-full h-full cursor-pointer group/thumb flex items-center justify-center bg-black" onClick={handlePlayClick}>
-                                <iframe
-                                    src={getVideoEmbedUrl(project.video_link) || undefined}
-                                    title={project.video_title}
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowFullScreen
-                                    loading="lazy"
-                                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[105%] h-[105%] border-0 pointer-events-none"
-                                />
+                                {isVisible ? (
+                                    <iframe
+                                        src={getVideoEmbedUrl(project.video_link) || undefined}
+                                        title={project.video_title}
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                        loading="lazy"
+                                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[105%] h-[105%] border-0 pointer-events-none"
+                                    />
+                                ) : (
+                                    <Image
+                                        src={thumbnailUrl}
+                                        alt={project.video_title}
+                                        fill
+                                        className="object-cover"
+                                        sizes="(max-width: 768px) 50vw, 33vw"
+                                    />
+                                )}
                                 {/* Golden border glow effect mimicking Hero */}
                                 <div className="absolute inset-0 rounded-xl pointer-events-none border border-amber-500/10" />
 
